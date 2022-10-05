@@ -1,26 +1,36 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+// import axios from 'axios'
 import { FaUser } from 'react-icons/fa'
+import { redirect, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { register } from '../actions/authActions'
 
 // eslint-disable-next-line react/function-component-definition
 const RegisterPage = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-    })
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const [message, setMessage] = useState()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    const { name, email, password, confirmPassword } = formData
+    const userRegister = useSelector((state) => state.userRegister)
+    const { userInfo } = userRegister
 
-    const handleOnChange = (e) => {
-        setFormData((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value,
-        }))
-    }
+    useEffect(() => {
+        if (userInfo) {
+            navigate(redirect)
+        }
+    }, [navigate, userInfo])
 
     const onSubmit = (e) => {
         e.preventDefault()
+        if (password !== confirmPassword) {
+            setMessage('It is not the same password. Please type again!')
+        } else {
+            dispatch(register(name, email, password))
+        }
     }
 
     return (
@@ -34,6 +44,10 @@ const RegisterPage = () => {
             </section>
 
             <section className="form">
+                {message && <p>Message</p>}
+                {/* {error && <p>Error</p>} */}
+                {/* {loading && <p>Loading...</p>} */}
+
                 <form onSubmit={onSubmit}>
                     <div className="form-group">
                         <input
@@ -43,7 +57,7 @@ const RegisterPage = () => {
                             name="name"
                             value={name}
                             placeholder="Enter your name"
-                            onChange={handleOnChange}
+                            onChange={(e) => setName(e.target.value)}
                         />
                         <input
                             type="email"
@@ -52,7 +66,7 @@ const RegisterPage = () => {
                             name="email"
                             value={email}
                             placeholder="Enter your email"
-                            onChange={handleOnChange}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                         <input
                             type="password"
@@ -61,7 +75,7 @@ const RegisterPage = () => {
                             name="password"
                             value={password}
                             placeholder="Enter your password"
-                            onChange={handleOnChange}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                         <input
                             type="password"
@@ -70,7 +84,7 @@ const RegisterPage = () => {
                             name="confirmPassword"
                             value={confirmPassword}
                             placeholder="Confirm your password"
-                            onChange={handleOnChange}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
                         />
                     </div>
                     <button type="submit" className="btn btn-primary">
