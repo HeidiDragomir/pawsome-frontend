@@ -1,8 +1,18 @@
+import { NavDropdown } from 'react-bootstrap'
 import { FaSignInAlt, FaSignOutAlt, FaUser, FaAngellist } from 'react-icons/fa'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { logout } from '../../actions/authActions'
 
 // eslint-disable-next-line react/function-component-definition
 const Header = () => {
+    const dispatch = useDispatch()
+    // const userLogin = useSelector((state) => state.userLogin)
+    // const { userInfo } = userLogin
+
+    const logoutHandler = () => {
+        dispatch(logout())
+    }
     return (
         <header className="header">
             <div className="logo">
@@ -28,10 +38,10 @@ const Header = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/">
+                    <NavDropdown.Item onClick={logoutHandler}>
                         <FaSignOutAlt />
                         Logout
-                    </Link>
+                    </NavDropdown.Item>
                 </li>
             </ul>
         </header>
