@@ -1,4 +1,4 @@
-import Alert from 'react-bootstrap/Alert'
+import { Alert } from 'react-bootstrap'
 
 // eslint-disable-next-line react/function-component-definition
 const Message = ({ variant, children }) => {

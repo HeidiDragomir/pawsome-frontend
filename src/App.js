@@ -4,6 +4,8 @@ import AdminPage from './pages/AdminPage'
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/auth/LoginPage'
 import RegisterPage from './pages/auth/RegisterPage'
+import ProfilePage from './pages/ProfilePage'
+import AboutMePage from './pages/AboutMePage'
 
 // eslint-disable-next-line react/function-component-definition
 const App = () => {
@@ -13,9 +15,13 @@ const App = () => {
                 <Header />
                 <Routes>
                     <Route path="/" element={<HomePage />} exact />
-                    <Route path="/admin" element={<AdminPage />} />
+
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
+                    <Route path="/profile" element={<ProfilePage />} />
+                    <Route path="/profile/aboutme" element={<AboutMePage />} />
+
+                    <Route path="/admin" element={<AdminPage />} />
                 </Routes>
             </div>
         </Router>
