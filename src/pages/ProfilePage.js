@@ -1,32 +1,27 @@
 import { Button, ButtonGroup } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
 
 // eslint-disable-next-line react/function-component-definition
 const ProfilePage = () => {
-    const navigate = useNavigate()
-    const handleClick = () => {
-        navigate('/profile/aboutme')
-    }
     return (
         <>
             <h2>My Pawsome page</h2>
             <ButtonGroup aria-label="Profile">
-                <Button type="button" variant="primary" onClick={handleClick}>
+                <Button type="button" href="/profile/aboutme" variant="primary">
                     About me
                 </Button>
-                <Button type="button" variant="primary" onClick={handleClick}>
-                    Dog/cat profile
+                <Button type="button" variant="primary" href="/profile/pets">
+                    My pets
                 </Button>
-                <Button type="button" variant="primary" onClick={handleClick}>
+                <Button type="button" variant="primary" href="/profile/aboutme">
                     Create event
                 </Button>
-                <Button type="button" variant="primary" onClick={handleClick}>
-                    Donate
+                <Button type="button" variant="primary" href="/profile/aboutme">
+                    Donate items
                 </Button>
-                <Button type="button" variant="primary" onClick={handleClick}>
+                <Button type="button" variant="primary" href="/profile/aboutme">
                     Volunteer
                 </Button>
-                <Button type="button" variant="primary" onClick={handleClick}>
+                <Button type="button" variant="primary" href="/profile/aboutme">
                     Ask something
                 </Button>
             </ButtonGroup>
