@@ -12,9 +12,11 @@ import {
     PET_CREATE_REQUEST,
     PET_CREATE_SUCCESS,
     PET_CREATE_FAIL,
+    PET_CREATE_RESET,
     PET_UPDATE_REQUEST,
     PET_UPDATE_SUCCESS,
     PET_UPDATE_FAIL,
+    PET_UPDATE_RESET,
     PET_DELETE_REQUEST,
     PET_DELETE_SUCCESS,
     PET_DELETE_FAIL,
@@ -94,6 +96,8 @@ export const petCreateReducer = (state = {}, action) => {
                 loading: false,
                 error: action.payload,
             }
+        case PET_CREATE_RESET:
+            return {}
         default:
             return state
     }
@@ -116,6 +120,8 @@ export const petUpdateReducer = (state = { pet: {} }, action) => {
                 loading: false,
                 error: action.payload,
             }
+        case PET_UPDATE_RESET:
+            return { pet: {} }
         default:
             return state
     }

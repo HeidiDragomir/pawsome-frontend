@@ -9,6 +9,7 @@ import ProfilePage from './pages/ProfilePage'
 import AboutMePage from './pages/AboutMePage'
 import PetPage from './pages/PetPage'
 import MyPetsPage from './pages/MyPetsPage'
+import PetCreatePage from './pages/PetCreatePage'
 import PetEditPage from './pages/PetEditPage'
 
 // eslint-disable-next-line react/function-component-definition
@@ -26,8 +27,9 @@ const App = () => {
                     <Route path="/profile" element={<ProfilePage />} />
                     <Route path="/profile/aboutme" element={<AboutMePage />} />
                     <Route path="/profile/pets" element={<MyPetsPage />} />
-                    <Route path="/pet/:id/edit" element={<PetEditPage />} />
+                    <Route path="/pet/create" element={<PetCreatePage />} />
 
+                    <Route path="/pet/:id/edit" element={<PetEditPage />} />
                     <Route path="/pet/:id" element={<PetPage />} />
 
                     <Route path="/admin" element={<AdminPage />} />

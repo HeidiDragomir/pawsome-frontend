@@ -108,44 +108,44 @@ export const petDetails = (id) => async (dispatch, getState) => {
     }
 }
 
-export const petCreate = () => async (dispatch, getState) => {
-    try {
-        dispatch({
-            type: PET_CREATE_REQUEST,
-        })
+export const createPet =
+    (name, gender, age, size, about, photo, place) => async (dispatch, getState) => {
+        try {
+            dispatch({
+                type: PET_CREATE_REQUEST,
+            })
 
-        const {
-            userLogin: { userInfo },
-        } = getState()
+            const {
+                userLogin: { userInfo },
+            } = getState()
 
-        const config = {
-            headers: {
-                Authorization: `Bearer ${userInfo.token}`,
-            },
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${userInfo.token}`,
+                },
+            }
+            const { data } = await axios.post(
+                `${process.env.REACT_APP_API_URL}/api/pets/mypets`,
+                { name, gender, age, size, about, photo, place },
+                config
+            )
+
+            dispatch({
+                type: PET_CREATE_SUCCESS,
+                payload: data,
+            })
+        } catch (error) {
+            dispatch({
+                type: PET_CREATE_FAIL,
+                payload:
+                    error.response && error.response.data.message
+                        ? error.response.data.message
+                        : error.message,
+            })
         }
-
-        const { data } = await axios.post(
-            `${process.env.REACT_APP_API_URL}/api/pets/mypets`,
-            {},
-            config
-        )
-
-        dispatch({
-            type: PET_CREATE_SUCCESS,
-            payload: data,
-        })
-    } catch (error) {
-        dispatch({
-            type: PET_CREATE_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
-        })
     }
-}
 
-export const petUpdate = (pet) => async (dispatch, getState) => {
+export const updatePet = (pet) => async (dispatch, getState) => {
     try {
         dispatch({
             type: PET_UPDATE_REQUEST,
@@ -183,7 +183,7 @@ export const petUpdate = (pet) => async (dispatch, getState) => {
     }
 }
 
-export const petDelete = (id) => async (dispatch, getState) => {
+export const deletePet = (id) => async (dispatch, getState) => {
     try {
         dispatch({
             type: PET_DELETE_REQUEST,

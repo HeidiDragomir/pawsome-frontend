@@ -1,16 +1,14 @@
-/* eslint-disable no-underscore-dangle */
-import { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, useParams, useNavigate } from 'react-router-dom'
-// import { Button } from 'react-bootstrap'
+import { useEffect, useState } from 'react'
 import { BsArrowLeft } from 'react-icons/bs'
-import Message from '../components/message/Message'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { createPet } from '../actions/petActions'
+import { PET_CREATE_RESET } from '../actions/types'
 import Loader from '../components/loader/Loader'
-import { petDetails, updatePet } from '../actions/petActions'
-import { PET_UPDATE_RESET } from '../actions/types'
+import Message from '../components/message/Message'
 
 // eslint-disable-next-line react/function-component-definition
-const PetEditPage = () => {
+const PetCreatePage = () => {
     const [name, setName] = useState('')
     const [gender, setGender] = useState('')
     const [age, setAge] = useState(0)
@@ -19,44 +17,29 @@ const PetEditPage = () => {
     const [photo, setPhoto] = useState('')
     const [place, setPlace] = useState('')
 
-    const { id } = useParams()
-    const navigate = useNavigate()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    const petInfo = useSelector((state) => state.petInfo)
-    const { loading, error, pet } = petInfo
+    const petCreate = useSelector((state) => state.petCreate)
+    const { loading, error, success } = petCreate
 
-    const petUpdate = useSelector((state) => state.petUpdate)
-    const { success } = petUpdate
+    // const petInfo = useSelector((state) => state.petInfo)
+    // const { pet } = petInfo
 
     useEffect(() => {
         if (success) {
-            dispatch({ type: PET_UPDATE_RESET })
+            dispatch({ type: PET_CREATE_RESET })
             navigate('/profile/pets')
-        } else {
-            // eslint-disable-next-line no-lonely-if
-            if (!pet.name || pet._id !== id) {
-                dispatch(petDetails(id))
-            } else {
-                setName(pet.name)
-                setGender(pet.gender)
-                setAge(pet.age)
-                setSize(pet.size)
-                setAbout(pet.about)
-                setPhoto(pet.photo)
-                setPlace(pet.place)
-            }
         }
-    }, [navigate, success, dispatch, id, pet])
+    }, [success, navigate, dispatch])
 
     const handleOnSubmit = (e) => {
         e.preventDefault()
-        dispatch(updatePet({ _id: id, name, gender, age, size, about, photo, place }))
-        navigate('/profile/pets')
+        dispatch(createPet(name, gender, age, size, about, photo, place))
     }
 
     return (
-        <section className="section-pet-edit">
+        <section className="section-pet-create">
             <div className="mb-5 ms-5">
                 <Link to="/profile/pets" className="link-black text-center">
                     <BsArrowLeft className="icon-back" />
@@ -64,7 +47,7 @@ const PetEditPage = () => {
                 </Link>
             </div>
             <div className="pet-edit-center">
-                <h2>Update Pet</h2>
+                <h2>Create Pet</h2>
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
 
@@ -110,13 +93,13 @@ const PetEditPage = () => {
                             required
                         />
                         {/* <input
-                            id="about"
-                            type="text"
-                            value={about}
-                            onChange={(e) => setAbout(e.target.value)}
-                            placeholder="Add pet about"
-                            required
-                        /> */}
+                    id="about"
+                    type="text"
+                    value={about}
+                    onChange={(e) => setAbout(e.target.value)}
+                    placeholder="Add pet about"
+                    required
+                /> */}
                         <input
                             id="photo"
                             type="text"
@@ -135,7 +118,7 @@ const PetEditPage = () => {
                         />
                     </div>
                     <button className="btn-black w-100" type="submit">
-                        Update
+                        Create
                     </button>
                 </form>
             </div>
@@ -143,4 +126,4 @@ const PetEditPage = () => {
     )
 }
 
-export default PetEditPage
+export default PetCreatePage
