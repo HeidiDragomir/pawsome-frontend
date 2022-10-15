@@ -1,14 +1,16 @@
-import { useEffect, useState } from 'react'
-import { BsArrowLeft } from 'react-icons/bs'
+/* eslint-disable no-underscore-dangle */
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
-import { createPet } from '../actions/petActions'
-import { PET_CREATE_RESET } from '../actions/types'
-import Loader from '../components/loader/Loader'
-import Message from '../components/message/Message'
+import { Link, useParams, useNavigate } from 'react-router-dom'
+// import { Button } from 'react-bootstrap'
+import { BsArrowLeft } from 'react-icons/bs'
+import Message from '../../components/message/Message'
+import Loader from '../../components/loader/Loader'
+import { petDetails, updatePet } from '../../actions/petActions'
+import { PET_UPDATE_RESET } from '../../actions/types'
 
 // eslint-disable-next-line react/function-component-definition
-const PetCreatePage = () => {
+const PetEditPage = () => {
     const [name, setName] = useState('')
     const [gender, setGender] = useState('')
     const [age, setAge] = useState(0)
@@ -17,29 +19,44 @@ const PetCreatePage = () => {
     const [photo, setPhoto] = useState('')
     const [place, setPlace] = useState('')
 
-    const dispatch = useDispatch()
+    const { id } = useParams()
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
-    const petCreate = useSelector((state) => state.petCreate)
-    const { loading, error, success } = petCreate
+    const petInfo = useSelector((state) => state.petInfo)
+    const { loading, error, pet } = petInfo
 
-    // const petInfo = useSelector((state) => state.petInfo)
-    // const { pet } = petInfo
+    const petUpdate = useSelector((state) => state.petUpdate)
+    const { success } = petUpdate
 
     useEffect(() => {
         if (success) {
-            dispatch({ type: PET_CREATE_RESET })
+            dispatch({ type: PET_UPDATE_RESET })
             navigate('/profile/pets')
+        } else {
+            // eslint-disable-next-line no-lonely-if
+            if (!pet.name || pet._id !== id) {
+                dispatch(petDetails(id))
+            } else {
+                setName(pet.name)
+                setGender(pet.gender)
+                setAge(pet.age)
+                setSize(pet.size)
+                setAbout(pet.about)
+                setPhoto(pet.photo)
+                setPlace(pet.place)
+            }
         }
-    }, [success, navigate, dispatch])
+    }, [navigate, success, dispatch, id, pet])
 
     const handleOnSubmit = (e) => {
         e.preventDefault()
-        dispatch(createPet(name, gender, age, size, about, photo, place))
+        dispatch(updatePet({ _id: id, name, gender, age, size, about, photo, place }))
+        navigate('/profile/pets')
     }
 
     return (
-        <section className="section-pet-create">
+        <section className="section-pet-edit">
             <div className="mb-5 ms-5">
                 <Link to="/profile/pets" className="link-black text-center">
                     <BsArrowLeft className="icon-back" />
@@ -47,7 +64,7 @@ const PetCreatePage = () => {
                 </Link>
             </div>
             <div className="pet-edit-center">
-                <h2>Create Pet</h2>
+                <h2>Update Pet</h2>
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
 
@@ -93,13 +110,13 @@ const PetCreatePage = () => {
                             required
                         />
                         {/* <input
-                    id="about"
-                    type="text"
-                    value={about}
-                    onChange={(e) => setAbout(e.target.value)}
-                    placeholder="Add pet about"
-                    required
-                /> */}
+                            id="about"
+                            type="text"
+                            value={about}
+                            onChange={(e) => setAbout(e.target.value)}
+                            placeholder="Add pet about"
+                            required
+                        /> */}
                         <input
                             id="photo"
                             type="text"
@@ -118,7 +135,7 @@ const PetCreatePage = () => {
                         />
                     </div>
                     <button className="btn-black w-100" type="submit">
-                        Create
+                        Update
                     </button>
                 </form>
             </div>
@@ -126,4 +143,4 @@ const PetCreatePage = () => {
     )
 }
 
-export default PetCreatePage
+export default PetEditPage

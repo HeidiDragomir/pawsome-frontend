@@ -7,9 +7,9 @@ import { BsArrowLeft } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
-import { petDetails, deletePet } from '../actions/petActions'
-import Loader from '../components/loader/Loader'
-import Message from '../components/message/Message'
+import { petDetails, deletePet } from '../../actions/petActions'
+import Loader from '../../components/loader/Loader'
+import Message from '../../components/message/Message'
 
 const PetPage = () => {
     const dispatch = useDispatch()
