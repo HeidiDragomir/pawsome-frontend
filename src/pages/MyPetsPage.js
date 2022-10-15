@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { BsArrowLeft } from 'react-icons/bs'
 import { Link, useNavigate } from 'react-router-dom'
 import { listMyPets } from '../actions/petActions'
-import Card from '../components/card/Card'
+import CardPet from '../components/card/CardPet'
 import Loader from '../components/loader/Loader'
 import Message from '../components/message/Message'
 
@@ -45,7 +45,7 @@ const MyPetsPage = () => {
 
                 <div className="pets">
                     {pets.map((pet) => (
-                        <Card key={pet._id} pet={pet} />
+                        <CardPet key={pet._id} pet={pet} />
                     ))}
                 </div>
             </div>
