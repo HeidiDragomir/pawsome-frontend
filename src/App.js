@@ -7,10 +7,26 @@ import LoginPage from './pages/auth/LoginPage'
 import RegisterPage from './pages/auth/RegisterPage'
 import ProfilePage from './pages/ProfilePage'
 import AboutMePage from './pages/AboutMePage'
-import PetPage from './pages/PetPage'
+import PetPage from './pages/pet/PetPage'
 import MyPetsPage from './pages/MyPetsPage'
-import PetCreatePage from './pages/PetCreatePage'
-import PetEditPage from './pages/PetEditPage'
+import PetCreatePage from './pages/pet/PetCreatePage'
+import PetEditPage from './pages/pet/PetEditPage'
+import EventPage from './pages/event/EventPage'
+import MyEventsPage from './pages/MyEventsPage'
+import EventCreatePage from './pages/event/EventCreatePage'
+import EventEditPage from './pages/event/EventEditPage'
+import DonationPage from './pages/donation/DonationPage'
+import MyDonationsPage from './pages/MyDonationsPage'
+import DonationCreatePage from './pages/donation/DonationCreatePage'
+import DonationEditPage from './pages/donation/DonationEditPage'
+import VolunteerPage from './pages/volunteer/VolunteerPage'
+import MyVolunteersPage from './pages/MyVolunteersPage'
+import VolunteerCreatePage from './pages/volunteer/VolunteerCreatePage'
+import VolunteerEditPage from './pages/volunteer/VolunteerEditPage'
+import QuestionPage from './pages/question/QuestionPage'
+import MyQuestionsPage from './pages/MyQuestionsPage'
+import QuestionCreatePage from './pages/question/QuestionCreatePage'
+import QuestionEditPage from './pages/question/QuestionEditPage'
 
 // eslint-disable-next-line react/function-component-definition
 const App = () => {
@@ -26,11 +42,31 @@ const App = () => {
 
                     <Route path="/profile" element={<ProfilePage />} />
                     <Route path="/profile/aboutme" element={<AboutMePage />} />
+
                     <Route path="/profile/pets" element={<MyPetsPage />} />
                     <Route path="/pet/create" element={<PetCreatePage />} />
-
                     <Route path="/pet/:id/edit" element={<PetEditPage />} />
                     <Route path="/pet/:id" element={<PetPage />} />
+
+                    <Route path="/profile/events" element={<MyEventsPage />} />
+                    <Route path="/event/create" element={<EventCreatePage />} />
+                    <Route path="/event/:id/edit" element={<EventEditPage />} />
+                    <Route path="/event/:id" element={<EventPage />} />
+
+                    <Route path="/profile/donations" element={<MyDonationsPage />} />
+                    <Route path="/donation/create" element={<DonationCreatePage />} />
+                    <Route path="/donation/:id/edit" element={<DonationEditPage />} />
+                    <Route path="/donation/:id" element={<DonationPage />} />
+
+                    <Route path="/profile/volunteers" element={<MyVolunteersPage />} />
+                    <Route path="/volunteer/create" element={<VolunteerCreatePage />} />
+                    <Route path="/volunteer/:id/edit" element={<VolunteerEditPage />} />
+                    <Route path="/volunteer/:id" element={<VolunteerPage />} />
+
+                    <Route path="/profile/questions" element={<MyQuestionsPage />} />
+                    <Route path="/question/create" element={<QuestionCreatePage />} />
+                    <Route path="/question/:id/edit" element={<QuestionEditPage />} />
+                    <Route path="/question/:id" element={<QuestionPage />} />
 
                     <Route path="/admin" element={<AdminPage />} />
                 </Routes>
