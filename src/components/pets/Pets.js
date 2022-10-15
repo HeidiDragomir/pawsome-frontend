@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Card from '../card/Card'
+import CardPet from '../card/CardPet'
 import Loader from '../loader/Loader'
 import Message from '../message/Message'
 
@@ -25,7 +25,7 @@ const Pets = () => {
                 <div className="pets">
                     {pets.map((pet) => (
                         // eslint-disable-next-line no-underscore-dangle
-                        <Card key={pet._id} pet={pet} />
+                        <CardPet key={pet._id} pet={pet} />
                     ))}
                 </div>
             </div>
