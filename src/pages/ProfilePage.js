@@ -12,16 +12,16 @@ const ProfilePage = () => {
                 <Button type="button" variant="primary" href="/profile/pets">
                     My pets
                 </Button>
-                <Button type="button" variant="primary" href="/profile/aboutme">
-                    Create event
+                <Button type="button" variant="primary" href="/profile/events">
+                    My events
                 </Button>
-                <Button type="button" variant="primary" href="/profile/aboutme">
+                <Button type="button" variant="primary" href="/profile/donations">
                     Donate items
                 </Button>
-                <Button type="button" variant="primary" href="/profile/aboutme">
+                <Button type="button" variant="primary" href="/profile/volunteers">
                     Volunteer
                 </Button>
-                <Button type="button" variant="primary" href="/profile/aboutme">
+                <Button type="button" variant="primary" href="/profile/questions">
                     Ask something
                 </Button>
             </ButtonGroup>
