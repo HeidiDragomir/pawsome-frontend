@@ -1,7 +1,11 @@
 import { Button, ButtonGroup } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 
 // eslint-disable-next-line react/function-component-definition
 const ProfilePage = () => {
+    const userDetails = useSelector((state) => state.userDetails)
+    const { user } = userDetails
+
     return (
         <>
             <h2>My Pawsome page</h2>
@@ -25,6 +29,7 @@ const ProfilePage = () => {
                     Ask something
                 </Button>
             </ButtonGroup>
+            <h3>{user.details}</h3>
         </>
     )
 }
