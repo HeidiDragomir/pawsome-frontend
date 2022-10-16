@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import { userRegisterReducer, userLoginReducer } from './authReducers'
+import { userDetailsReducer, userUpdateProfileReducer } from './userReducers'
 import {
     petDetailsReducer,
     petListReducer,
@@ -48,6 +49,8 @@ import {
 const rootReducer = combineReducers({
     userRegister: userRegisterReducer,
     userLogin: userLoginReducer,
+    userDetails: userDetailsReducer,
+    userUpdateProfile: userUpdateProfileReducer,
     petList: petListReducer,
     petMyList: petMyListReducer,
     petInfo: petDetailsReducer,
