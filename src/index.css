@@ -1,6 +1,6 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
 
 * {
   margin: 0;
@@ -9,11 +9,15 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
 }
 
-a {
+:root {
+  --main-color: #35d8e1;
+  --main-color-alt2: #e75575;
+  --main-color-alt: #fc8800;
+}
+/* a {
   text-decoration: none;
   color: #000;
 }
@@ -214,4 +218,4 @@ h3 {
   .heading p {
     font-size: 1.5rem;
   }
-}
+} */
