@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import CardPet from '../card/CardPet'
-import Loader from '../loader/Loader'
-import Message from '../message/Message'
+import CardPet from '../components/card/CardPet'
+import Loader from '../components/loader/Loader'
+import Message from '../components/message/Message'
 
-import { listPets } from '../../actions/petActions'
+import { listPets } from '../actions/petActions'
 
 // eslint-disable-next-line react/function-component-definition
-const Pets = () => {
+const PetsPage = () => {
     const dispatch = useDispatch()
 
     const petList = useSelector((state) => state.petList)
@@ -33,4 +33,4 @@ const Pets = () => {
     )
 }
 
-export default Pets
+export default PetsPage
