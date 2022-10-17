@@ -1,0 +1,64 @@
+.header {
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+    background: white;
+    box-shadow: 0 0 10px #cfcfcf;
+}
+
+
+.logo {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.logo span {
+    color: var(--main-color-alt)
+}
+
+.icon {
+    color: var(--main-color-alt)
+}
+
+.icon-text {
+    font-weight: 600;
+    margin: 0 10px;
+}
+
+.nav-link, .nav-link:after, .nav-link:before {
+    transition: all 0.25s;
+}
+
+.nav-link:hover {
+    color: var(--main-color-alt)
+}
+.stroke .nav-link {
+    position: relative;
+}
+
+.stroke .nav-link:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    content: "";
+    color: transparent;
+    background: var(--main-color-alt);
+    height: 3px;
+    width: 0%;
+}
+
+.stroke .nav-link:hover:after {
+    width: 100%;
+}
+
+#username {
+    margin: 0 10px;
+}
+
+
+
+
+

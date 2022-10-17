@@ -1,19 +1,19 @@
-import Pets from '../components/pets/Pets'
-import Events from '../components/events/Events'
-import Donations from '../components/donations/Donations'
-import Volunteers from '../components/volunteers/Volunteers'
-import Questions from '../components/questions/Questions'
+// import Events from '../components/events/Events'
+// import Donations from '../components/donations/Donations'
+// import Volunteers from '../components/volunteers/Volunteers'
+// import Questions from '../components/questions/Questions'
+import PetsPage from './PetsPage'
 
 // eslint-disable-next-line react/function-component-definition
 const HomePage = () => {
     return (
-        <div>
+        <div className="container">
             <h2>HomePage</h2>
-            <Pets />
-            <Events />
+            <PetsPage />
+            {/* <Events />
             <Donations />
             <Volunteers />
-            <Questions />
+            <Questions /> */}
         </div>
     )
 }
