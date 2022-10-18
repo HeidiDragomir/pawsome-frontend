@@ -1,0 +1,24 @@
+.hero-section {
+    background: linear-gradient(35deg, #54f6ff, white);
+}
+
+
+h3 span {
+    color: var(--main-color-alt)
+}
+.hero-img {
+    width: 15em;
+    height: auto;
+}
+
+
+
+/* Media Queries */
+
+@media screen and (min-width: 600px) {
+    .hero-section-item {
+        display: flex;
+        
+    }
+    
+}
