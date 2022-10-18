@@ -6,10 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
-  font-family: 'Montserrat', sans-serif;
+  list-style: none;
 }
 
 :root {
@@ -17,6 +14,68 @@ body {
   --main-color-alt2: #e75575;
   --main-color-alt: #fc8800;
 }
+
+body {
+  font-size: 1.2rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+  /* display: flex;
+  flex-direction: column; */
+}
+
+/* GENERAL STYLES */
+
+/* Paragraphs */
+
+/* Buttons/logo/icon */
+
+.btn-black {
+  background-color: var(--main-color-alt);
+  color: black;
+  font-weight: 600;
+  border: none
+}
+
+
+
+/* Links */
+
+a {
+  text-decoration: none;
+}
+
+/* Forms */
+
+.form,
+.content {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-family: inherit;
+}
+
+.form-group label {
+  text-align: left;
+  display: block;
+  margin: 0 0 5px 3px;
+}
+
 /* a {
   text-decoration: none;
   color: #000;
