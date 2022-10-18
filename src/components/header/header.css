@@ -1,26 +1,25 @@
 .header {
     width: 100%;
-    position: fixed;
+    /* position: fixed; */
     z-index: 999;
     background: white;
     box-shadow: 0 0 10px #cfcfcf;
 }
 
-
 .logo {
     cursor: pointer;
     display: flex;
     align-items: center;
-}
-
-.logo span {
+  }
+  
+  .logo span {
     color: var(--main-color-alt)
-}
+  }
 
-.icon {
+  .icon {
     color: var(--main-color-alt)
-}
-
+  }
+  
 .icon-text {
     font-weight: 600;
     margin: 0 10px;
@@ -55,10 +54,19 @@
 }
 
 #username {
-    margin: 0 10px;
+    padding: 0 10px;
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
 }
 
 
+/* Media Queries */
 
-
+@media screen and (min-width: 600px) {
+    
+    
+}
 

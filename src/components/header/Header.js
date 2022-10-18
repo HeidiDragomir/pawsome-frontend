@@ -42,28 +42,28 @@ const Header = () => {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto stroke">
-                                <Nav.Link href="/" className="nav-link fs-5 p-3">
+                                <Nav.Link href="/" className="nav-link fs-5 px-3">
                                     Home
                                 </Nav.Link>
-                                <Nav.Link href="/pets" className="nav-link fs-5 p-3">
+                                <Nav.Link href="/pets" className="nav-link fs-5 px-3">
                                     Pets
                                 </Nav.Link>
-                                <Nav.Link href="/pets" className="nav-link fs-5 p-3">
+                                <Nav.Link href="/pets" className="nav-link fs-5 px-3">
                                     Donate
                                 </Nav.Link>
-                                <Nav.Link href="/pets" className="nav-link fs-5 p-3">
+                                <Nav.Link href="/pets" className="nav-link fs-5 px-3">
                                     Volunteer
                                 </Nav.Link>
-                                <Nav.Link href="/pets" className="nav-link fs-5 p-3">
+                                <Nav.Link href="/pets" className="nav-link fs-5 px-3">
                                     Events
                                 </Nav.Link>
-                                <Nav.Link href="/pets" className="nav-link fs-5 p-3">
+                                <Nav.Link href="/pets" className="nav-link fs-5 px-3">
                                     Ask
                                 </Nav.Link>
                             </Nav>
 
                             {userInfo ? (
-                                <>
+                                <div className="nav-user">
                                     <BiUser className="icon fs-4" />
                                     <NavDropdown
                                         title={`Welcome, ${userInfo.name}`}
@@ -81,7 +81,7 @@ const Header = () => {
                                             <FaSignOutAlt className="icon" /> Logout
                                         </NavDropdown.Item>
                                     </NavDropdown>
-                                </>
+                                </div>
                             ) : (
                                 <>
                                     <Nav.Link className="nav-link fs-5 p-2" href="/login">
