@@ -18,7 +18,7 @@ const Hero = () => {
                     </div>
                     <img className="hero-img" src={HERO} alt="cute pets" />
                 </div>
-                <Button type="button" href="/pets" size="lg" className="btn-black mt-4">
+                <Button type="button" href="/pets" size="lg" className="btn-main-color mt-4">
                     Adopt
                 </Button>
             </div>

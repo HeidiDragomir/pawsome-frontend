@@ -4,7 +4,7 @@ footer {
 }
 
 .footer-container {
-    background-color: #333333;
+    background-color: var(--color-grey);
 }
 
 .logo-footer {
@@ -19,11 +19,11 @@ footer {
 
 .icon-footer {
     color: var(--main-color-alt);
-    font-size: 3rem;
+    font-size: 2em;
 }
 
 .icon-text-footer {
-    font-size: 3rem;
+    font-size: 2em;
     color: white;
     font-weight: 600;
     margin: 0 10px;
@@ -31,7 +31,7 @@ footer {
 
 .footer-link {
     color: #fff;
-    font-size: 1rem;
+    font-size: .8em;
 }
 
 .footer-link:hover {
@@ -52,12 +52,12 @@ footer {
 }
 
 .footer-socials-copyright {
-    color: #333333;
+    color: var(--color-grey);
     font-weight: 600;
 }
 
 .footer-socials-icons {
-    color: #333333;
+    color: var(--color-grey);
 }
 
 .icon-footer-social {

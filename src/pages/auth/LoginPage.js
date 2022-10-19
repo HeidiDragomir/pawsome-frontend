@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../components/loader/Loader'
 import Message from '../../components/message/Message'
 import { login } from '../../actions/authActions'
+import './auth.css'
 
 // eslint-disable-next-line react/function-component-definition
 const LoginPage = () => {
@@ -34,16 +35,13 @@ const LoginPage = () => {
     }
 
     return (
-        <>
-            <section className="heading">
-                <h1>
-                    <FaUser />
+        <section className="section-register flex-grow-1 d-flex justify-content-center align-items-center">
+            <div className="form-container bg-white rounded-5 border">
+                <h1 className="my-4">
+                    <FaUser className="icon-form" />
                     Login
                 </h1>
-                <p>Login and start create profile</p>
-            </section>
 
-            <section className="form">
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
 
@@ -55,7 +53,7 @@ const LoginPage = () => {
                             id="email"
                             name="email"
                             value={email}
-                            placeholder="Enter your email"
+                            placeholder="Email Adress"
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <input
@@ -64,25 +62,29 @@ const LoginPage = () => {
                             id="password"
                             name="password"
                             value={password}
-                            placeholder="Enter your password"
+                            placeholder="Password"
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit" className="btn-form mt-3">
                         Login
                     </button>
                 </form>
-                <p>
-                    No account?{' '}
-                    <Link
-                        className="link-black"
-                        to={redirect ? `/register?redirect=${redirect}` : '/register'}
-                    >
-                        Please signup here!
-                    </Link>
-                </p>
-            </section>
-        </>
+                <div className="border-form w-100 mt-4">
+                    <div className="d-flex justify-content-center mt-3">
+                        <h2 className="text-form">{`Don't have an account?`} </h2>
+                        <h2 className="text-form">
+                            <Link
+                                className="link-black fw-bold"
+                                to={redirect ? `/register?redirect=${redirect}` : '/register'}
+                            >
+                                Signup here!
+                            </Link>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </section>
     )
 }
 
