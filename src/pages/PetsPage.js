@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import CardPet from '../components/card/CardPet'
 import Loader from '../components/loader/Loader'
 import Message from '../components/message/Message'
+import './petsPage.css'
 
 import { listPets } from '../actions/petActions'
 
@@ -22,7 +23,10 @@ const PetsPage = () => {
             <div className="pets-container">
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
+
                 <div className="pets">
+                    <h2 className="pets-title fs-1 fw-bold mb-5">Pawsome family</h2>
+
                     {pets.map((pet) => (
                         // eslint-disable-next-line no-underscore-dangle
                         <CardPet key={pet._id} pet={pet} />
