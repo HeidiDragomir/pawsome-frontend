@@ -12,7 +12,7 @@ import './homepage.css'
 // eslint-disable-next-line react/function-component-definition
 const HomePage = () => {
     return (
-        <>
+        <div className="homepage-section">
             <Hero />
             <div className="homepage-section-container">
                 <div className="homepage-cards">
@@ -49,7 +49,7 @@ const HomePage = () => {
             <Donations />
             <Volunteers />
             <Questions /> */}
-        </>
+        </div>
     )
 }
 
