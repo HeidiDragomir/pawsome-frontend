@@ -1,2 +1,36 @@
 
+.card-item-img {
+    background: #fff;
+    width: 12em;
+    height: 15em;
+    border-radius: 10px;
+}
 
+.card-item-img img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.card-item .card-item-place {
+    margin: 1em 0;
+ }
+ 
+.card-item .card-item-name {
+margin-bottom: 0;
+ }
+.card-item p:last-child {
+     margin-bottom: 3em
+ }
+
+.card-item-place {
+    color: gray;
+}
+
+.card-item-name {
+    color: black;
+    text-transform: uppercase;
+}
+
+.card-item-age {
+    color: black;
+}
