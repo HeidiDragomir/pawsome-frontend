@@ -20,18 +20,15 @@ const PetsPage = () => {
 
     return (
         <section className="pets-section">
-            <div className="pets-container">
+            <h2 className="pets-title fs-1 fw-bold mb-5">Pawsome family</h2>
+            <div className="cards-container">
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
 
-                <div className="pets">
-                    <h2 className="pets-title fs-1 fw-bold mb-5">Pawsome family</h2>
-
-                    {pets.map((pet) => (
-                        // eslint-disable-next-line no-underscore-dangle
-                        <CardPet key={pet._id} pet={pet} />
-                    ))}
-                </div>
+                {pets.map((pet) => (
+                    // eslint-disable-next-line no-underscore-dangle
+                    <CardPet key={pet._id} pet={pet} />
+                ))}
             </div>
         </section>
     )

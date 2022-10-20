@@ -7,13 +7,14 @@ const Card = ({ pet }) => {
     return (
         // eslint-disable-next-line no-underscore-dangle
 
-        <Link className="card-item text-decoration-none" to={`/pet/${pet._id}`}>
-            <div className="card-item-img d-flex justify-content-center align-items-center">
+        <Link className="card h-100 text-decoration-none" to={`/pet/${pet._id}`}>
+            <div className="card-img">
                 <img src={pet.photo} alt="cute pet" />
             </div>
-            <p className="card-item-place fs-6">{pet.place}</p>
-            <p className="card-item-name fs-5 fw-bold">{pet.name}</p>
-            <p className="card-item-age fs-6">
+
+            <p className="card-place fs-6">{pet.place}</p>
+            <p className="card-title fs-5 fw-bold">{pet.name}</p>
+            <p className="card-age fs-6">
                 {pet.age} years, {pet.gender}
             </p>
         </Link>

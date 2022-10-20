@@ -20,45 +20,67 @@ const Footer = () => {
                         </div>
                     </Link>
                 </div>
-                <div className="my-3">
-                    <h3 className="mt-5">Help</h3>
-                    <ul className="p-0">
-                        <li>
-                            <Link to="/" className="footer-link">
-                                Adoption process
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/" className="footer-link">
-                                Foster process
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/" className="footer-link">
-                                Contact us
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-                <div className="my-3">
-                    <h3 className="mt-5">About us</h3>
-                    <ul className="p-0">
-                        <li>
-                            <Link to="/" className="footer-link">
-                                About Pawsome
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/" className="footer-link">
-                                Cookies policy
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/" className="footer-link">
-                                Privacy policy
-                            </Link>
-                        </li>
-                    </ul>
+                <div className="footer-links-container">
+                    <div className="footer-links my-3">
+                        <h3 className="">Help</h3>
+                        <ul className="p-0">
+                            <li>
+                                <Link to="/" className="footer-link">
+                                    Adoption process
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/" className="footer-link">
+                                    Foster process
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/" className="footer-link">
+                                    Contact us
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="footer-links my-3">
+                        <h3 className="">About us</h3>
+                        <ul className="p-0">
+                            <li>
+                                <Link to="/" className="footer-link">
+                                    About Pawsome
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/" className="footer-link">
+                                    Cookies policy
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/" className="footer-link">
+                                    Privacy policy
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="footer-links my-3">
+                        <h3 className="">Pet care topics</h3>
+                        <ul className="p-0">
+                            <li>
+                                <Link to="/" className="footer-link">
+                                    Dog care
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/" className="footer-link">
+                                    Cat care
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/" className="footer-link">
+                                    Pet care videos
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div className="footer-bottom-container">
