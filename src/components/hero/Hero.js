@@ -10,17 +10,23 @@ const Hero = () => {
             <div className="hero-section-container">
                 <div className="hero-section-item">
                     <div className="hero-section-text">
-                        <h1 className="fw-bold">Find your new</h1>
+                        <h1 className="fw-bold">Find</h1>
                         <h3 className="fw-bolder">
-                            <span>best friend</span>!
+                            your new
+                            <span> best friend</span>!
                         </h3>
                         <p>Meet our dogs and cats that are looking for a home.</p>
+                        <Button
+                            type="button"
+                            href="/pets"
+                            size="lg"
+                            className="btn-main-color mt-4"
+                        >
+                            Adopt
+                        </Button>
                     </div>
                     <img className="hero-img" src={HERO} alt="cute pets" />
                 </div>
-                <Button type="button" href="/pets" size="lg" className="btn-main-color mt-4">
-                    Adopt
-                </Button>
             </div>
         </section>
     )
