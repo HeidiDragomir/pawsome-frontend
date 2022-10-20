@@ -25,6 +25,7 @@
     margin: 0 10px;
 }
 
+
 .nav-link, .nav-link:after, .nav-link:before {
     transition: all 0.25s;
 }
@@ -41,7 +42,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    margin: auto;
+    margin-left: 1rem;
     content: "";
     color: transparent;
     background: var(--main-color-alt);
@@ -50,7 +51,7 @@
 }
 
 .stroke .nav-link:hover:after {
-    width: 100%;
+    width: 20%;
 }
 
 #username {
@@ -65,8 +66,14 @@
 
 /* Media Queries */
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 500px) {
+
+    .stroke .nav-link:after {
+        margin: auto;
+    }
     
-    
+    .stroke .nav-link:hover:after {
+        width: 100%;
+    }
 }
 
