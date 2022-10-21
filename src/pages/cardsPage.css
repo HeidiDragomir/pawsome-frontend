@@ -1,0 +1,11 @@
+.cards-section {
+    padding: 5em 0;
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 15em);
+    justify-content: center;
+    grid-gap: 2em;
+    grid-row-gap: 4em;
+}
