@@ -1,15 +1,17 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect } from 'react'
-import { LinkContainer } from 'react-router-bootstrap'
-import { Table } from 'react-bootstrap'
+// import { LinkContainer } from 'react-router-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { IconContext } from 'react-icons'
-import { BsXLg, BsCheckLg, BsPlus } from 'react-icons/bs'
+import { BsXLg } from 'react-icons/bs'
 import { FaEdit, FaTrash } from 'react-icons/fa'
+import { FcCheckmark } from 'react-icons/fc'
 import Message from '../../components/message/Message'
 import Loader from '../../components/loader/Loader'
 import { listUsers, deleteUser } from '../../actions/userActions'
+import './adminPage.css'
 
 // eslint-disable-next-line react/function-component-definition
 const AdminPage = () => {
@@ -35,29 +37,28 @@ const AdminPage = () => {
 
     const deleteHandler = (id) => {
         // eslint-disable-next-line no-alert, no-undef
-        if (window.confirm('Are you sure you want to delete user?')) {
-            dispatch(deleteUser(id))
-        }
+
+        dispatch(deleteUser(id))
     }
 
     return (
-        <section className="section-userlist">
-            <div className="user-list-container">
-                <div className="d-flex justify-content-between align-items">
-                    <h2>User</h2>
-                    <Link
-                        className="btn-black my-3 text-decoration-none"
+        <section className="users-section">
+            <div className="users-container">
+                <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+                    <h2 className="fw-bold fs-1">Users</h2>
+                    <Button
+                        className="btn-main-color my-3 text-decoration-none"
                         type="button"
-                        to="/admin/user/create"
+                        href="/admin/user/create"
                     >
-                        <BsPlus /> Create User
-                    </Link>
+                        Create User
+                    </Button>
                 </div>
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
-                <Table className="table-sm">
+                <Table responsive="sm" hover>
                     <thead>
-                        <tr>
+                        <tr className="tbl-row-align">
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
@@ -67,7 +68,7 @@ const AdminPage = () => {
                     </thead>
                     <tbody>
                         {users.map((user) => (
-                            <tr key={user._id}>
+                            <tr className="tbl-row-align" key={user._id}>
                                 <td>{user._id}</td>
                                 <td className="name">{user.name}</td>
                                 <td>
@@ -77,14 +78,7 @@ const AdminPage = () => {
                                 </td>
                                 <td>
                                     {user.isAdmin ? (
-                                        <IconContext.Provider
-                                            // eslint-disable-next-line react/jsx-no-constructed-context-values
-                                            value={{
-                                                color: 'green',
-                                            }}
-                                        >
-                                            <BsCheckLg />
-                                        </IconContext.Provider>
+                                        <FcCheckmark className="fw-bold fs-2" />
                                     ) : (
                                         <IconContext.Provider
                                             // eslint-disable-next-line react/jsx-no-constructed-context-values
@@ -97,23 +91,25 @@ const AdminPage = () => {
                                     )}
                                 </td>
                                 <td className="action">
-                                    <LinkContainer to={`/admin/user/${user._id}/edit`}>
-                                        <button
-                                            type="button"
-                                            className="me-5 fs-1 bg-transparent text-primary"
-                                        >
-                                            <FaEdit />
-                                        </button>
-                                    </LinkContainer>
-                                    <button
-                                        className="fs-1 bg-transparent text-danger"
+                                    <Button
+                                        href={`/admin/user/${user._id}/edit`}
+                                        type="button"
+                                        variant="info"
+                                        className="mx-1"
+                                    >
+                                        <FaEdit className="fs-4" />
+                                    </Button>
+
+                                    <Button
+                                        variant="danger"
+                                        className="mx-1"
                                         type="button"
                                         onClick={() => {
                                             deleteHandler(user._id)
                                         }}
                                     >
-                                        <FaTrash />
-                                    </button>
+                                        <FaTrash className="fs-4" />
+                                    </Button>
                                 </td>
                             </tr>
                         ))}

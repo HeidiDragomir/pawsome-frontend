@@ -1,5 +1,6 @@
 import { FaSignInAlt, FaUser, FaSignOutAlt, FaPaw } from 'react-icons/fa'
 import { BiUser } from 'react-icons/bi'
+import { BsFillPeopleFill } from 'react-icons/bs'
 import { ImProfile } from 'react-icons/im'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -75,7 +76,10 @@ const Header = () => {
                                         </NavDropdown.Item>
 
                                         {userInfo.isAdmin && (
-                                            <NavDropdown.Item href="/admin">Users</NavDropdown.Item>
+                                            <NavDropdown.Item href="/admin">
+                                                <BsFillPeopleFill className="icon-users" />
+                                                Users
+                                            </NavDropdown.Item>
                                         )}
                                         <NavDropdown.Item onClick={logoutHandler}>
                                             <FaSignOutAlt className="icon" /> Logout

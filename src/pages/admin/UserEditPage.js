@@ -7,6 +7,7 @@ import Message from '../../components/message/Message'
 import Loader from '../../components/loader/Loader'
 import { getUserDetails, updateUser } from '../../actions/userActions'
 import { USER_UPDATE_RESET } from '../../actions/types'
+import './adminPage.css'
 
 /* eslint-disable react/function-component-definition */
 
@@ -46,55 +47,50 @@ const UserEditPage = () => {
         dispatch(updateUser({ _id: id, name, email, isAdmin }))
     }
     return (
-        <section className="section-user-update">
-            <div className="mb-5 ms-5">
-                <Link to="/admin" className="link-black text-center">
+        <section className="user-edit-section flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+            <div className="mt-5 ms-5">
+                <Link to="/admin" className="link-black">
                     <BsArrowLeft className="icon-back" />
                     Back
                 </Link>
             </div>
-            <div className="center">
-                <h2>User</h2>
+            <div className="user-create-container form-container bg-white rounded-5 border">
+                <h2 className="my-4">User Info</h2>
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
                 <form onSubmit={onSubmit}>
                     <div className="form-group">
                         <input
+                            className="form-control"
                             id="name"
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
                         />
-                        <span />
-                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <label>Name</label>
-                    </div>
-                    <div className="form-group">
+
                         <input
+                            className="form-control"
                             id="email"
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
-                        <span />
-                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <label>Email</label>
-                    </div>
 
-                    <div className="form-group">
-                        <input
-                            id="isAdmin"
-                            type="checkbox"
-                            checked={isAdmin}
-                            onChange={(e) => setIsAdmin(e.target.checked)}
-                        />
-                        <span />
-                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <label>Admin</label>
+                        <div className="form-admin">
+                            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                            <label>Admin</label>
+                            <input
+                                className="input-admin"
+                                id="isAdmin"
+                                type="checkbox"
+                                checked={isAdmin}
+                                onChange={(e) => setIsAdmin(e.target.checked)}
+                            />
+                        </div>
                     </div>
-                    <button type="submit" className="btn-black w-100">
+                    <button type="submit" className="btn-form mt-3 w-100">
                         Update
                     </button>
                 </form>
