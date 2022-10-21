@@ -29,7 +29,7 @@ const Header = () => {
             <nav>
                 <Navbar bg="light" expand="md">
                     <Container>
-                        <Nav.Link classname="logo-container" href="/">
+                        <Nav.Link className="logo-container" href="/">
                             <div className="logo">
                                 <div>
                                     <FaPaw className="icon fs-2" />

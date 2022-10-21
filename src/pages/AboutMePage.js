@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { BsArrowLeft } from 'react-icons/bs'
+import { BsArrowLeft, BsPersonBoundingBox } from 'react-icons/bs'
 import Message from '../components/message/Message'
 import Loader from '../components/loader/Loader'
 import { getUserDetails, updateUserProfile } from '../actions/userActions'
@@ -55,15 +55,18 @@ const AboutMePage = () => {
         navigate('/profile')
     }
     return (
-        <section className="aboutme-section">
-            <div className="mb-5 ms-5">
-                <Link to="/profile" className="link-black text-center">
+        <section className="aboutme-section flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+            <div className="mt-5 ms-5">
+                <Link to="/profile" className="link-black">
                     <BsArrowLeft className="icon-back" />
                     Back
                 </Link>
             </div>
-            <div className="aboutme-container">
-                <h2>My Details</h2>
+            <div className="aboutme-container form-container bg-white rounded-5 border">
+                <h2 className="my-4">
+                    <BsPersonBoundingBox className="icon-form" />
+                    My Info
+                </h2>
                 {message && <Message variant="danger">{message}</Message>}
                 {error && <Message variant="danger">{error}</Message>}
                 {success && <Message variant="success">Account is updated</Message>}
@@ -72,63 +75,48 @@ const AboutMePage = () => {
                 <form onSubmit={onSubmit}>
                     <div className="form-group">
                         <input
+                            className="form-control"
                             id="name"
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
                         />
-                        <span />
-                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <label>Name</label>
-                    </div>
-                    <div className="form-group">
+
                         <input
+                            className="form-control"
                             id="email"
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
-                        <span />
-                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <label>Email</label>
-                    </div>
-                    <div className="form-group">
+
                         <input
                             id="password"
                             type="password"
+                            placeholder="New Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        <span />
-                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <label>
-                            New password <small>*(free)</small>
-                        </label>
-                    </div>
-                    <div className="form-group">
+
                         <input
                             id="confirmPassword"
                             type="password"
+                            placeholder="Confirm New Password"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         />
-                        <span />
-                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <label>Confirm password</label>
-                    </div>
-                    <div className="form-group">
+
                         <textarea
                             id="details"
                             value={details}
+                            placeholder="Details"
                             onChange={(e) => setDetails(e.target.value)}
                             required
                         />
-                        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                        <label>Details</label>
                     </div>
-                    <button type="submit" className="btn-black w-100">
+                    <button type="submit" className="btn-form mt-3 w-100">
                         Update
                     </button>
                 </form>

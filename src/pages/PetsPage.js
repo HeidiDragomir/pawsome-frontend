@@ -20,7 +20,7 @@ const PetsPage = () => {
 
     return (
         <section className="pets-section">
-            <h2 className="pets-title fs-1 fw-bold mb-5">Pawsome family</h2>
+            {/* <h2 className="pets-title fs-1 fw-bold mb-5">Pawsome family</h2> */}
             <div className="cards-container">
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}

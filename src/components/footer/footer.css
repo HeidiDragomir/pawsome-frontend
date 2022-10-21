@@ -112,8 +112,7 @@ footer {
 
 .footer-container {
     display: flex;
-    justify-content: space-between;
-    /* row-gap: 5rem; */
+    gap: 10rem;
 }
 
 .logo-footer {

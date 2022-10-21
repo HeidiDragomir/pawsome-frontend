@@ -41,10 +41,10 @@ const RegisterPage = () => {
     return (
         <section className="section-register flex-grow-1 d-flex justify-content-center align-items-center">
             <div className="form-container bg-white rounded-5 border">
-                <h1 className="my-4">
+                <h2 className="my-4">
                     <FaUser className="icon-form" />
                     Sign up
-                </h1>
+                </h2>
                 {message && <Message variant="danger">{message}</Message>}
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
