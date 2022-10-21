@@ -1,6 +1,7 @@
 .card {
   box-shadow: 0 0 5px 0 rgba(22, 22, 26, .25);
   border-radius: 20px 0;
+  padding: .5rem;
 }
 
 .card-img {
@@ -33,7 +34,8 @@
   margin-left: 1rem;
   text-transform: uppercase;
 }
-.card-age {
+
+.card-age, .card-description {
   font-size: 1.8em;
   font-weight: 500;
   color: #333333;
