@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import './card.css'
 
 // eslint-disable-next-line react/function-component-definition
-const Card = ({ pet }) => {
+const CardPet = ({ pet }) => {
     return (
         // eslint-disable-next-line no-underscore-dangle
 
@@ -21,4 +21,4 @@ const Card = ({ pet }) => {
     )
 }
 
-export default Card
+export default CardPet

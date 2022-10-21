@@ -30,6 +30,10 @@ import QuestionEditPage from './pages/question/QuestionEditPage'
 import UserCreatePage from './pages/admin/UserCreatePage'
 import UserEditPage from './pages/admin/UserEditPage'
 import PetsPage from './pages/PetsPage'
+import EventsPage from './pages/EventsPage'
+import DonationsPage from './pages/DonationsPage'
+import VolunteersPage from './pages/VolunteersPage'
+import QuestionsPage from './pages/QuestionsPage'
 
 // eslint-disable-next-line react/function-component-definition
 const App = () => {
@@ -39,6 +43,10 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<HomePage />} exact />
                 <Route path="/pets" element={<PetsPage />} />
+                <Route path="/events" element={<EventsPage />} />
+                <Route path="/donations" element={<DonationsPage />} />
+                <Route path="/volunteers" element={<VolunteersPage />} />
+                <Route path="/questions" element={<QuestionsPage />} />
 
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />

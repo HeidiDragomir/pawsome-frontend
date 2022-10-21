@@ -8,6 +8,7 @@ import { listMyDonations } from '../actions/donationActions'
 import CardDonation from '../components/card/CardDonation'
 import Loader from '../components/loader/Loader'
 import Message from '../components/message/Message'
+import './cardsPage.css'
 
 // eslint-disable-next-line react/function-component-definition
 const MyDonationsPage = () => {
@@ -29,25 +30,25 @@ const MyDonationsPage = () => {
     }, [dispatch, userInfo, navigate])
 
     return (
-        <section className="donations-section">
+        <section className="cards-section">
             <div className="mb-5 ms-5">
-                <Link to="/profile" className="link-black text-center">
+                <Link to="/profile" className="link-black">
                     <BsArrowLeft className="icon-back" />
                     Back
                 </Link>
             </div>
-            <div className="donations-container">
-                <Button type="button" href="/donation/create">
-                    Create
+            <div className="donations-container d-flex align-items-center justify-content-center mb-5">
+                <Button type="button" className="btn-main-color" href="/donation/create">
+                    Add
                 </Button>
+            </div>
+            <div className="cards-container">
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
-
-                <div className="donations">
-                    {donations.map((donation) => (
-                        <CardDonation key={donation._id} donation={donation} />
-                    ))}
-                </div>
+                {donations.length === 0 && <h2>Nothing found.</h2>}
+                {donations.map((donation) => (
+                    <CardDonation key={donation._id} donation={donation} />
+                ))}
             </div>
         </section>
     )

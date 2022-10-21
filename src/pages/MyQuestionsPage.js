@@ -8,6 +8,7 @@ import { listMyQuestions } from '../actions/questionActions'
 import CardQuestion from '../components/card/CardQuestion'
 import Loader from '../components/loader/Loader'
 import Message from '../components/message/Message'
+import './cardsPage.css'
 
 // eslint-disable-next-line react/function-component-definition
 const MyQuestionsPage = () => {
@@ -29,25 +30,25 @@ const MyQuestionsPage = () => {
     }, [dispatch, userInfo, navigate])
 
     return (
-        <section className="questions-section">
+        <section className="cards-section">
             <div className="mb-5 ms-5">
-                <Link to="/profile" className="link-black text-center">
+                <Link to="/profile" className="link-black">
                     <BsArrowLeft className="icon-back" />
                     Back
                 </Link>
             </div>
-            <div className="questions-container">
-                <Button type="button" href="/question/create">
-                    Create
+            <div className="questions-container d-flex align-items-center justify-content-center mb-5">
+                <Button className="btn-main-color" type="button" href="/question/create">
+                    Add
                 </Button>
+            </div>
+            <div className="cards-container">
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
-
-                <div className="questions">
-                    {questions.map((question) => (
-                        <CardQuestion key={question._id} question={question} />
-                    ))}
-                </div>
+                {questions.length === 0 && <h2>Nothing found.</h2>}
+                {questions.map((question) => (
+                    <CardQuestion key={question._id} question={question} />
+                ))}
             </div>
         </section>
     )

@@ -1,21 +1,20 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import CardPet from '../components/card/CardPet'
+import CardEvent from '../components/card/CardEvent'
 import Loader from '../components/loader/Loader'
 import Message from '../components/message/Message'
+import { listEvents } from '../actions/eventActions'
 import './cardsPage.css'
 
-import { listPets } from '../actions/petActions'
-
 // eslint-disable-next-line react/function-component-definition
-const PetsPage = () => {
+const EventsPage = () => {
     const dispatch = useDispatch()
 
-    const petList = useSelector((state) => state.petList)
-    const { loading, error, pets } = petList
+    const eventList = useSelector((state) => state.eventList)
+    const { loading, error, events } = eventList
 
     useEffect(() => {
-        dispatch(listPets())
+        dispatch(listEvents())
     }, [dispatch])
 
     return (
@@ -24,13 +23,13 @@ const PetsPage = () => {
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
 
-                {pets.map((pet) => (
+                {events.map((event) => (
                     // eslint-disable-next-line no-underscore-dangle
-                    <CardPet key={pet._id} pet={pet} />
+                    <CardEvent key={event._id} event={event} />
                 ))}
             </div>
         </section>
     )
 }
 
-export default PetsPage
+export default EventsPage

@@ -8,7 +8,7 @@ import { listMyPets } from '../actions/petActions'
 import CardPet from '../components/card/CardPet'
 import Loader from '../components/loader/Loader'
 import Message from '../components/message/Message'
-import './petsPage.css'
+import './cardsPage.css'
 
 // eslint-disable-next-line react/function-component-definition
 const MyPetsPage = () => {
@@ -30,7 +30,7 @@ const MyPetsPage = () => {
     }, [dispatch, userInfo, navigate])
 
     return (
-        <section className="pets-section">
+        <section className="cards-section">
             <div className="mb-5 ms-5">
                 <Link to="/profile" className="link-black">
                     <BsArrowLeft className="icon-back" />
