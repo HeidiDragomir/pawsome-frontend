@@ -1,0 +1,73 @@
+.profile-section {
+    margin: 3rem;
+}
+
+.btn-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+    align-items: center;
+    justify-items: center;
+}
+
+.btn-profile {
+    width: 8rem;
+    height: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #efeef1;
+    border: 1px solid var(--main-color-alt);
+    border-radius: 20rem;
+    box-shadow: 0 4px 4px #0000000d;
+    cursor: pointer;
+    color: var(--main-color-alt);
+    gap: 1rem
+}
+
+/* Media queries */
+
+@media (min-width: 576px) {
+    .btn-profile {
+        width: 10rem;
+        font-size: 1.2rem;
+    }
+}
+
+@media (min-width: 768px) {
+    
+    .profile-section {
+        margin: 5rem;
+    }
+    .btn-group {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2em;
+        align-items: center;
+        justify-items: center;
+    }
+    
+    .btn-profile {
+        width: 80%;
+        height: 10rem;
+    }
+}
+
+
+@media (min-width: 1200px) {
+
+    .btn-group {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2em;
+        align-items: center;
+        justify-items: center;
+    }
+    
+    .btn-profile {
+        width: 60%;
+        height: 10rem;
+        font-size: 1.5rem;
+    }
+}
