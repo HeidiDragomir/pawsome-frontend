@@ -33,91 +33,90 @@ const PetCreatePage = () => {
         }
     }, [success, navigate, dispatch])
 
-    const handleOnSubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault()
         dispatch(createPet(name, gender, age, size, about, photo, place))
     }
 
     return (
-        <section className="section-pet-create">
-            <div className="mb-5 ms-5">
-                <Link to="/profile/pets" className="link-black text-center">
+        <section className="pet-create-section flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+            <div className="mt-5 ms-5">
+                <Link to="/profile/pets" className="link-black">
                     <BsArrowLeft className="icon-back" />
                     Back
                 </Link>
             </div>
-            <div className="pet-edit-center">
-                <h2>Create Pet</h2>
+            <div className="pet-create-container form-container bg-white rounded-5 border">
+                <h2 className="my-4">Add Pet Info</h2>
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
 
-                <form onSubmit={handleOnSubmit}>
+                <form onSubmit={onSubmit}>
                     <div className="form-group">
                         <input
+                            className="form-control"
                             id="name"
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            placeholder="Add name"
+                            placeholder="Name"
                             required
                         />
                         <input
+                            className="form-control"
                             id="gender"
                             type="text"
                             value={gender}
                             onChange={(e) => setGender(e.target.value)}
-                            placeholder="Add pet gender"
+                            placeholder="Gender"
                             required
                         />
                         <input
+                            className="form-control"
                             id="age"
                             type="text"
                             value={age}
                             onChange={(e) => setAge(e.target.value)}
-                            placeholder="Add pet age"
+                            placeholder="Age"
                             required
                         />
                         <input
+                            className="form-control"
                             id="size"
                             type="text"
                             value={size}
                             onChange={(e) => setSize(e.target.value)}
-                            placeholder="Add pet size"
+                            placeholder="Size"
                             required
                         />
                         <textarea
+                            className="form-control"
                             id="about"
                             value={about}
                             onChange={(e) => setAbout(e.target.value)}
-                            placeholder="Add pet about"
+                            placeholder="More Info"
                             required
                         />
-                        {/* <input
-                    id="about"
-                    type="text"
-                    value={about}
-                    onChange={(e) => setAbout(e.target.value)}
-                    placeholder="Add pet about"
-                    required
-                /> */}
                         <input
+                            className="form-control"
                             id="photo"
                             type="text"
                             value={photo}
                             onChange={(e) => setPhoto(e.target.value)}
-                            placeholder="Add pet photo"
+                            placeholder="Photo"
                             required
                         />
                         <input
+                            className="form-control"
                             id="place"
                             type="text"
                             value={place}
                             onChange={(e) => setPlace(e.target.value)}
-                            placeholder="Add pet place"
+                            placeholder="Place"
                             required
                         />
                     </div>
-                    <button className="btn-black w-100" type="submit">
+                    <button className="btn-form mt-3 w-100" type="submit">
                         Create
                     </button>
                 </form>
