@@ -29,51 +29,54 @@ const QuestionCreatePage = () => {
         }
     }, [success, navigate, dispatch])
 
-    const handleOnSubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault()
         dispatch(createQuestion(title, photo, description))
     }
 
     return (
-        <section className="section-question-create">
-            <div className="mb-5 ms-5">
-                <Link to="/profile/questions" className="link-black text-center">
+        <section className="question-create-section flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+            <div className="mt-5 ms-5">
+                <Link to="/profile/questions" className="link-black">
                     <BsArrowLeft className="icon-back" />
                     Back
                 </Link>
             </div>
-            <div className="question-edit-center">
-                <h2>Create Question</h2>
+            <div className="question-create-container form-container bg-white rounded-5 border">
+                <h2 className="my-4">Add Question</h2>
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
 
-                <form onSubmit={handleOnSubmit}>
+                <form onSubmit={onSubmit}>
                     <div className="form-group">
                         <input
+                            className="form-control"
                             id="title"
                             type="text"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            placeholder="Add question title"
+                            placeholder="Title"
                             required
                         />
                         <input
+                            className="form-control"
                             id="photo"
                             type="text"
                             value={photo}
                             onChange={(e) => setPhoto(e.target.value)}
-                            placeholder="Add question photo"
+                            placeholder="Photo"
                             required
                         />
                         <textarea
+                            className="form-control"
                             id="description"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            placeholder="Add question description"
+                            placeholder="Description"
                             required
                         />
                     </div>
-                    <button className="btn-black w-100" type="submit">
+                    <button className="btn-form mt-3 w-100" type="submit">
                         Create
                     </button>
                 </form>
