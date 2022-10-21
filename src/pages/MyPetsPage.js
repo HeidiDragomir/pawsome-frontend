@@ -8,6 +8,7 @@ import { listMyPets } from '../actions/petActions'
 import CardPet from '../components/card/CardPet'
 import Loader from '../components/loader/Loader'
 import Message from '../components/message/Message'
+import './petsPage.css'
 
 // eslint-disable-next-line react/function-component-definition
 const MyPetsPage = () => {
@@ -31,23 +32,23 @@ const MyPetsPage = () => {
     return (
         <section className="pets-section">
             <div className="mb-5 ms-5">
-                <Link to="/profile" className="link-black text-center">
+                <Link to="/profile" className="link-black">
                     <BsArrowLeft className="icon-back" />
                     Back
                 </Link>
             </div>
-            <div className="pets-container">
-                <Button type="button" href="/pet/create">
-                    Create
+            <div className="pets-container d-flex align-items-center justify-content-center mb-5">
+                <Button type="button" className="btn-main-color" href="/pet/create">
+                    Add new pet
                 </Button>
+            </div>
+            <div className="cards-container">
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
-
-                <div className="pets">
-                    {pets.map((pet) => (
-                        <CardPet key={pet._id} pet={pet} />
-                    ))}
-                </div>
+                {pets.length === 0 && <h2>Nothing found.</h2>}
+                {pets.map((pet) => (
+                    <CardPet key={pet._id} pet={pet} />
+                ))}
             </div>
         </section>
     )
