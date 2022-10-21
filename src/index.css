@@ -23,22 +23,17 @@ body {
 
 #root {
   min-height: 100vh;
-  /* display: flex;
-  flex-direction: column; */
 }
 
 /* GENERAL STYLES */
 
-.homepage-section, .aboutme-section {
+.homepage-section, .aboutme-section, .user-create-section, .user-edit-section {
   background: radial-gradient(70.02% 276.03% at 70.02% 54.72%, #f5f5f5 33.43%, #e5e5e5 100%);
 }
 
-.aboutme-section, .pet-create-section {
+.aboutme-section, .pet-create-section, .user-edit-section {
   padding: 1em;
 }
-
-/* Paragraphs */
-
 
 /* Buttons/logo/icon */
 
@@ -67,4 +62,4 @@ a {
   color: black;
 }
 
-/* Forms */
+

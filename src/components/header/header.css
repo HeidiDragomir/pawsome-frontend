@@ -19,6 +19,11 @@
   .icon {
     color: var(--main-color-alt)
   }
+
+  .icon-users {
+    color: var(--main-color-alt);
+    margin-right: .2rem;
+  }
   
 .icon-text {
     font-weight: 600;
