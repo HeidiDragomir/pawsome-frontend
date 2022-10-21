@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import CardPet from '../components/card/CardPet'
 import Loader from '../components/loader/Loader'
 import Message from '../components/message/Message'
-import './petsPage.css'
+import './cardsPage.css'
 
 import { listPets } from '../actions/petActions'
 
@@ -19,8 +19,7 @@ const PetsPage = () => {
     }, [dispatch])
 
     return (
-        <section className="pets-section">
-            {/* <h2 className="pets-title fs-1 fw-bold mb-5">Pawsome family</h2> */}
+        <section className="cards-section">
             <div className="cards-container">
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
