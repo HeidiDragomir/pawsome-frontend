@@ -8,6 +8,7 @@ import { listMyVolunteers } from '../actions/volunteerActions'
 import CardVolunteer from '../components/card/CardVolunteer'
 import Loader from '../components/loader/Loader'
 import Message from '../components/message/Message'
+import './cardsPage.css'
 
 // eslint-disable-next-line react/function-component-definition
 const MyVolunteersPage = () => {
@@ -29,25 +30,25 @@ const MyVolunteersPage = () => {
     }, [dispatch, userInfo, navigate])
 
     return (
-        <section className="volunteers-section">
+        <section className="cards-section">
             <div className="mb-5 ms-5">
-                <Link to="/profile" className="link-black text-center">
+                <Link to="/profile" className="link-black">
                     <BsArrowLeft className="icon-back" />
                     Back
                 </Link>
             </div>
-            <div className="volunteers-container">
-                <Button type="button" href="/volunteer/create">
-                    Create
+            <div className="volunteers-container d-flex align-items-center justify-content-center mb-5">
+                <Button className="btn-main-color" type="button" href="/volunteer/create">
+                    Add
                 </Button>
+            </div>
+            <div className="cards-container">
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
-
-                <div className="volunteers">
-                    {volunteers.map((volunteer) => (
-                        <CardVolunteer key={volunteer._id} volunteer={volunteer} />
-                    ))}
-                </div>
+                {volunteers.length === 0 && <h2>Nothing found.</h2>}
+                {volunteers.map((volunteer) => (
+                    <CardVolunteer key={volunteer._id} volunteer={volunteer} />
+                ))}
             </div>
         </section>
     )
