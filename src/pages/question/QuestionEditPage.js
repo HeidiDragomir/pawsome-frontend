@@ -41,52 +41,55 @@ const QuestionEditPage = () => {
         }
     }, [navigate, success, dispatch, id, question])
 
-    const handleOnSubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault()
         dispatch(updateQuestion({ _id: id, title, photo, description }))
         navigate('/profile/questions')
     }
 
     return (
-        <section className="section-question-edit">
-            <div className="mb-5 ms-5">
-                <Link to="/profile/questions" className="link-black text-center">
+        <section className="question-edit-section flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+            <div className="mt-5 ms-5">
+                <Link to="/profile/questions" className="link-black">
                     <BsArrowLeft className="icon-back" />
                     Back
                 </Link>
             </div>
-            <div className="question-edit-center">
+            <div className="question-edit-container form-container bg-white rounded-5 border">
                 <h2>Update Question</h2>
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
 
-                <form onSubmit={handleOnSubmit}>
+                <form onSubmit={onSubmit}>
                     <div className="form-group">
                         <input
+                            className="form-control"
                             id="title"
                             type="text"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            placeholder="Add question title"
+                            placeholder="Title"
                             required
                         />
                         <input
+                            className="form-control"
                             id="photo"
                             type="text"
                             value={photo}
                             onChange={(e) => setPhoto(e.target.value)}
-                            placeholder="Add question photo"
+                            placeholder="Photo"
                             required
                         />
                         <textarea
+                            className="form-control"
                             id="description"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            placeholder="Add question description"
+                            placeholder="Description"
                             required
                         />
                     </div>
-                    <button className="btn-black w-100" type="submit">
+                    <button className="btn-form mt-3 w-100" type="submit">
                         Update
                     </button>
                 </form>
