@@ -48,16 +48,16 @@ const Header = () => {
                                 <Nav.Link href="/pets" className="nav-link fs-5 px-3">
                                     Pets
                                 </Nav.Link>
-                                <Nav.Link href="/pets" className="nav-link fs-5 px-3">
+                                <Nav.Link href="/donations" className="nav-link fs-5 px-3">
                                     Donate
                                 </Nav.Link>
-                                <Nav.Link href="/pets" className="nav-link fs-5 px-3">
+                                <Nav.Link href="/volunteers" className="nav-link fs-5 px-3">
                                     Volunteer
                                 </Nav.Link>
-                                <Nav.Link href="/pets" className="nav-link fs-5 px-3">
+                                <Nav.Link href="/events" className="nav-link fs-5 px-3">
                                     Events
                                 </Nav.Link>
-                                <Nav.Link href="/pets" className="nav-link fs-5 px-3">
+                                <Nav.Link href="/questions" className="nav-link fs-5 px-3">
                                     Ask
                                 </Nav.Link>
                             </Nav>
