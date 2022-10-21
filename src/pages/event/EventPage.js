@@ -23,9 +23,6 @@ const EventPage = () => {
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
 
-    // const eventDelete = useSelector((state) => state.eventDelete)
-    // const { success } = eventDelete
-
     useEffect(() => {
         if (!userInfo) {
             navigate('/login')
@@ -41,34 +38,45 @@ const EventPage = () => {
     }
 
     return (
-        <section className="event-section">
-            <div className="mb-5 ms-5">
-                <Link to="/profile/events" className="link-black text-center">
+        <section className="event-section flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+            <div className="mt-5 ms-5">
+                <Link to="/profile/events" className="link-black">
                     <BsArrowLeft className="icon-back" />
                     Back
                 </Link>
             </div>
-            <div className="event-container">
+            <div className="event-item form-container bg-white rounded-5 border">
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
-                <div className="event-item d-flex flex-wrap gap-5 mt-5">
-                    <div className="event-item-img d-flex align-items-center justify-content-center bg-white">
-                        <img src={event.photo} alt={event.title} />
-                    </div>
-                    <div className="event-item-info">
-                        <p className="event-info">{event.title}</p>
-                        <p className="event-about">{event.description}</p>
-                    </div>
 
-                    {userInfo._id === event.user ? (
-                        <div className="event-buttons-container">
-                            <Button href={`/event/${event._id}/edit`}>Edit</Button>
-                            <Button type="button" onClick={() => handleDelete(event._id)}>
-                                Delete
-                            </Button>
-                        </div>
-                    ) : null}
+                <div className="event-item-img d-flex align-items-center justify-content-center bg-white">
+                    <img src={event.photo} alt={event.title} />
                 </div>
+                <div className="event-item-info">
+                    <h2 className="event-info mt-5 mb-3 fw-bold">{event.title}</h2>
+                    <p className="event-about">{event.description}</p>
+                </div>
+
+                {userInfo._id === event.user ? (
+                    <div className="event-buttons-container">
+                        <Button
+                            className="fw-bold"
+                            variant="success"
+                            type="button"
+                            href={`/event/${event._id}/edit`}
+                        >
+                            Edit
+                        </Button>
+                        <Button
+                            className="mx-3 fw-bold"
+                            variant="danger"
+                            type="button"
+                            onClick={() => handleDelete(event._id)}
+                        >
+                            Delete
+                        </Button>
+                    </div>
+                ) : null}
             </div>
         </section>
     )

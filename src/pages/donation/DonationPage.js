@@ -23,9 +23,6 @@ const DonationPage = () => {
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
 
-    // const donationDelete = useSelector((state) => state.donationDelete)
-    // const { success } = donationDelete
-
     useEffect(() => {
         if (!userInfo) {
             navigate('/login')
@@ -41,34 +38,45 @@ const DonationPage = () => {
     }
 
     return (
-        <section className="donation-section">
-            <div className="mb-5 ms-5">
-                <Link to="/profile/donations" className="link-black text-center">
+        <section className="donation-section flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+            <div className="mt-5 ms-5">
+                <Link to="/profile/donations" className="link-black">
                     <BsArrowLeft className="icon-back" />
                     Back
                 </Link>
             </div>
-            <div className="donation-container">
+            <div className="donation-item form-container bg-white rounded-5 border">
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
-                <div className="donation-item d-flex flex-wrap gap-5 mt-5">
-                    <div className="donation-item-img d-flex align-items-center justify-content-center bg-white">
-                        <img src={donation.photo} alt={donation.title} />
-                    </div>
-                    <div className="donation-item-info">
-                        <p className="donation-info">{donation.title}</p>
-                        <p className="donation-about">{donation.description}</p>
-                    </div>
 
-                    {userInfo._id === donation.user ? (
-                        <div className="donation-buttons-container">
-                            <Button href={`/donation/${donation._id}/edit`}>Edit</Button>
-                            <Button type="button" onClick={() => handleDelete(donation._id)}>
-                                Delete
-                            </Button>
-                        </div>
-                    ) : null}
+                <div className="donation-item-img d-flex align-items-center justify-content-center bg-white">
+                    <img src={donation.photo} alt={donation.title} />
                 </div>
+                <div className="donation-item-info">
+                    <p className="donation-info mt-5 mb-3 fw-bold">{donation.title}</p>
+                    <p className="donation-about">{donation.description}</p>
+                </div>
+
+                {userInfo._id === donation.user ? (
+                    <div className="donation-buttons-container">
+                        <Button
+                            className="fw-bold"
+                            variant="success"
+                            type="button"
+                            href={`/donation/${donation._id}/edit`}
+                        >
+                            Edit
+                        </Button>
+                        <Button
+                            className="mx-3 fw-bold"
+                            variant="danger"
+                            type="button"
+                            onClick={() => handleDelete(donation._id)}
+                        >
+                            Delete
+                        </Button>
+                    </div>
+                ) : null}
             </div>
         </section>
     )
