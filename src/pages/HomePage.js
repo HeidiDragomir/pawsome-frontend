@@ -18,51 +18,48 @@ const HomePage = () => {
                 <>
                     <Hero />
                     <div className="homepage-section-container">
-                        <div className="homepage-cards">
-                            <ul className="homepage-cards-list">
-                                <li className="homepage-card">
-                                    <Button
-                                        href="/donations"
-                                        type="button"
-                                        className="btn-homepage-card"
-                                    >
-                                        <BiDonateHeart className="icon fs-2" />
-                                        <span>Donate</span>
-                                    </Button>
-                                </li>
-                                <li className="homepage-card">
-                                    <Button
-                                        href="/volunteers"
-                                        type="button"
-                                        className="btn-homepage-card"
-                                    >
-                                        <BiHomeHeart className="icon fs-2" />
-                                        <span>Volunteer</span>
-                                    </Button>
-                                </li>
-                                <li className="homepage-card">
-                                    <Button
-                                        href="/events"
-                                        type="button"
-                                        className="btn-homepage-card"
-                                    >
-                                        <MdOutlineEventAvailable className="icon fs-2" />
-                                        <span>Events</span>
-                                    </Button>
-                                </li>
-                                <li className="homepage-card">
-                                    <Button
-                                        href="/questions"
-                                        type="button"
-                                        className="btn-homepage-card"
-                                    >
-                                        <MdOutlineLiveHelp className="icon fs-2" />
-                                        <span>Ask</span>
-                                    </Button>
-                                </li>
-                            </ul>
+                        <div className="homepage-cards-list">
+                            <div className="homepage-card">
+                                <Button
+                                    href="/donations"
+                                    type="button"
+                                    className="btn-homepage-card"
+                                >
+                                    <BiDonateHeart className="icon fs-2" />
+                                    <span>Donate</span>
+                                </Button>
+                            </div>
+                            <div className="homepage-card">
+                                <Button
+                                    href="/volunteers"
+                                    type="button"
+                                    className="btn-homepage-card"
+                                >
+                                    <BiHomeHeart className="icon fs-2" />
+                                    <span>Volunteer</span>
+                                </Button>
+                            </div>
+                        </div>
+                        <div className="homepage-cards-list">
+                            <div className="homepage-card">
+                                <Button href="/events" type="button" className="btn-homepage-card">
+                                    <MdOutlineEventAvailable className="icon fs-2" />
+                                    <span>Events</span>
+                                </Button>
+                            </div>
+                            <div className="homepage-card">
+                                <Button
+                                    href="/questions"
+                                    type="button"
+                                    className="btn-homepage-card"
+                                >
+                                    <MdOutlineLiveHelp className="icon fs-2" />
+                                    <span>Ask</span>
+                                </Button>
+                            </div>
                         </div>
                     </div>
+
                     <PetsPage />
                 </>
             )}
