@@ -21,28 +21,32 @@ import {
     PET_DELETE_FAIL,
 } from './types'
 
-export const listPets = () => async (dispatch) => {
-    try {
-        dispatch({
-            type: PET_LIST_REQUEST,
-        })
+export const listPets =
+    (keyword = '') =>
+    async (dispatch) => {
+        try {
+            dispatch({
+                type: PET_LIST_REQUEST,
+            })
 
-        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/api/pets`)
+            const { data } = await axios.get(
+                `${process.env.REACT_APP_API_URL}/api/pets?keyword=${keyword}`
+            )
 
-        dispatch({
-            type: PET_LIST_SUCCESS,
-            payload: data,
-        })
-    } catch (error) {
-        dispatch({
-            type: PET_LIST_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
-        })
+            dispatch({
+                type: PET_LIST_SUCCESS,
+                payload: data,
+            })
+        } catch (error) {
+            dispatch({
+                type: PET_LIST_FAIL,
+                payload:
+                    error.response && error.response.data.message
+                        ? error.response.data.message
+                        : error.message,
+            })
+        }
     }
-}
 
 export const listMyPets = () => async (dispatch, getState) => {
     try {
