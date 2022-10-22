@@ -42,6 +42,7 @@ const App = () => {
             <Header />
             <Routes>
                 <Route path="/" element={<HomePage />} exact />
+                <Route path="/search/:keyword" element={<HomePage />} exact />
                 <Route path="/pets" element={<PetsPage />} />
                 <Route path="/events" element={<EventsPage />} />
                 <Route path="/donations" element={<DonationsPage />} />
