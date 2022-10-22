@@ -82,3 +82,11 @@
     }
 }
 
+@media (min-width: 992px) {
+    .icon-text {
+        margin: 0 5px;
+    }
+}
+
+
+
