@@ -10,6 +10,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { logout } from '../../actions/authActions'
 import './header.css'
+import Search from '../search/Search'
 
 // eslint-disable-next-line react/function-component-definition
 const Header = () => {
@@ -28,7 +29,7 @@ const Header = () => {
     return (
         <header className="header">
             <nav>
-                <Navbar bg="light" expand="md">
+                <Navbar bg="light" expand="lg">
                     <Container>
                         <Nav.Link className="logo-container" href="/">
                             <div className="logo">
@@ -40,8 +41,8 @@ const Header = () => {
                                 </div>
                             </div>
                         </Nav.Link>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
+                        <Navbar.Toggle aria-controls="navbar" />
+                        <Navbar.Collapse id="navbar">
                             <Nav className="me-auto stroke">
                                 <Nav.Link href="/" className="nav-link fs-5 px-3">
                                     Home
@@ -62,7 +63,7 @@ const Header = () => {
                                     Ask
                                 </Nav.Link>
                             </Nav>
-
+                            <Search />
                             {userInfo ? (
                                 <div className="nav-user">
                                     <BiUser className="icon fs-4" />
