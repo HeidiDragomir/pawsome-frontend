@@ -26,7 +26,7 @@ const PetsPage = () => {
     return (
         <section className="cards-section">
             <div className="cards-container">
-                {!loading && pets.length === 0 && <h4 className="text-center">Pet not found.</h4>}
+                {/* {!loading && pets.length === 0 && <h4 className="text-center">Pet not found.</h4>} */}
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
 
