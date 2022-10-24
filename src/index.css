@@ -51,6 +51,12 @@ body {
   border: none
 }
 
+.btn-adopt {
+  background-color: var(--main-color-alt);
+  color: white;
+  border: none
+}
+
 
 /* Links */
 

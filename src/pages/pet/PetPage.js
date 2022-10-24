@@ -1,22 +1,31 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/function-component-definition */
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
+import { AiOutlineHome } from 'react-icons/ai'
+import { FaCouch } from 'react-icons/fa'
+import { RiHandHeartLine } from 'react-icons/ri'
 import { BsArrowLeft } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-
-import { petDetails, deletePet } from '../../actions/petActions'
+import Confetti from 'react-confetti'
+import { petDetails, deletePet, updatePetToAdopted } from '../../actions/petActions'
 import Loader from '../../components/loader/Loader'
 import Message from '../../components/message/Message'
 
 const PetPage = () => {
+    const [adopted, setAdopted] = useState(false)
+    const [fostered, setFostered] = useState(false)
+    const [virtual, setVirtual] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const petInfo = useSelector((state) => state.petInfo)
     const { loading, error, pet } = petInfo
+
+    // const petUpdateToAdopted = useSelector((state) => state.petUpdateToAdopted)
+    // const { success } = petUpdateToAdopted
 
     const { id } = useParams()
 
@@ -26,15 +35,40 @@ const PetPage = () => {
     useEffect(() => {
         if (!userInfo) {
             navigate('/login')
-        } else {
-            dispatch(petDetails(id))
         }
-    }, [dispatch, id, userInfo, navigate])
+        if (!pet.name || pet._id !== id) {
+            dispatch(petDetails(id))
+        } else {
+            setAdopted(true)
+            setFostered(true)
+            setVirtual(true)
+        }
+    }, [dispatch, id, userInfo, navigate, pet])
 
     const handleDelete = () => {
         dispatch(deletePet(id))
-
         navigate('/profile/pets')
+    }
+
+    const handleIsAdopted = () => {
+        setAdopted(true)
+        dispatch(updatePetToAdopted({ _id: id, isAdopted: adopted }))
+        // eslint-disable-next-line no-undef
+        window.location.reload(true)
+    }
+
+    const handleIsVirtual = () => {
+        setVirtual(true)
+        dispatch(updatePetToAdopted({ _id: id, isVirtualAdopted: virtual }))
+        // eslint-disable-next-line no-undef
+        window.location.reload(true)
+    }
+
+    const handleIsFostered = () => {
+        setFostered(true)
+        dispatch(updatePetToAdopted({ _id: id, isFostered: fostered }))
+        // eslint-disable-next-line no-undef
+        window.location.reload(true)
     }
 
     return (
@@ -49,8 +83,28 @@ const PetPage = () => {
             <div className="pet-item form-container bg-white rounded-5 border">
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
-                <div className="pet-item-img d-flex align-items-center justify-content-center bg-white">
+                <div className="pet-item-img d-flex flex-column align-items-center justify-content-center bg-white">
                     <img src={pet.photo} alt={pet.name} />
+                    <div className="my-3 d-flex align-items-center justify-content-center gap-3">
+                        {pet.isAdopted && <Confetti width="1500px" height="800px" />}
+                        {!pet.isAdopted && (
+                            <Button onClick={handleIsAdopted} className="btn-adopt">
+                                <AiOutlineHome className="fs-4" />
+                            </Button>
+                        )}
+                        {pet.isFostered && <Confetti width="1500px" height="800px" />}
+                        {!pet.isAdopted && !pet.isFostered && (
+                            <Button onClick={handleIsFostered} className="btn-adopt">
+                                <FaCouch className="fs-4" />
+                            </Button>
+                        )}
+                        {pet.isVirtualAdopted && <Confetti width="1500px" height="800px" />}
+                        {!pet.isAdopted && !pet.isVirtualAdopted && (
+                            <Button onClick={handleIsVirtual} className="btn-adopt">
+                                <RiHandHeartLine className="fs-4" />
+                            </Button>
+                        )}
+                    </div>
                 </div>
                 <div className="pet-item-info">
                     <h2 className="pet-name mt-5 mb-3 fw-bold">{pet.name}</h2>

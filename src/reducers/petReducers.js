@@ -20,6 +20,10 @@ import {
     PET_DELETE_REQUEST,
     PET_DELETE_SUCCESS,
     PET_DELETE_FAIL,
+    PET_UPDATE_TO_ADOPTED_REQUEST,
+    PET_UPDATE_TO_ADOPTED_SUCCESS,
+    PET_UPDATE_TO_ADOPTED_FAIL,
+    PET_UPDATE_TO_ADOPTED_RESET,
 } from '../actions/types'
 
 export const petListReducer = (state = { pets: [] }, action) => {
@@ -143,6 +147,30 @@ export const petDeleteReducer = (state = {}, action) => {
                 loading: false,
                 error: action.payload,
             }
+        default:
+            return state
+    }
+}
+
+export const petUpdateToAdoptedReducer = (state = { pet: {} }, action) => {
+    switch (action.type) {
+        case PET_UPDATE_TO_ADOPTED_REQUEST:
+            return {
+                loading: true,
+            }
+        case PET_UPDATE_TO_ADOPTED_SUCCESS:
+            return {
+                loading: false,
+                success: true,
+                pet: action.payload,
+            }
+        case PET_UPDATE_TO_ADOPTED_FAIL:
+            return {
+                loading: false,
+                error: action.payload,
+            }
+        case PET_UPDATE_TO_ADOPTED_RESET:
+            return { pet: {} }
         default:
             return state
     }
