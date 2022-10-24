@@ -19,6 +19,9 @@ import {
     PET_DELETE_REQUEST,
     PET_DELETE_SUCCESS,
     PET_DELETE_FAIL,
+    PET_UPDATE_TO_ADOPTED_REQUEST,
+    PET_UPDATE_TO_ADOPTED_SUCCESS,
+    PET_UPDATE_TO_ADOPTED_FAIL,
 } from './types'
 
 export const listPets =
@@ -173,7 +176,7 @@ export const updatePet = (pet) => async (dispatch, getState) => {
         )
 
         dispatch({
-            PET_UPDATE_SUCCESS,
+            type: PET_UPDATE_SUCCESS,
             payload: data,
         })
     } catch (error) {
@@ -215,6 +218,33 @@ export const deletePet = (id) => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: PET_DELETE_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
+
+export const updatePetToAdopted = (pet) => async (dispatch) => {
+    try {
+        dispatch({
+            type: PET_UPDATE_TO_ADOPTED_REQUEST,
+        })
+
+        const { data } = await axios.put(
+            // eslint-disable-next-line no-underscore-dangle
+            `${process.env.REACT_APP_API_URL}/api/pets/${pet._id}`,
+            pet
+        )
+
+        dispatch({
+            type: PET_UPDATE_TO_ADOPTED_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: PET_UPDATE_TO_ADOPTED_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message
