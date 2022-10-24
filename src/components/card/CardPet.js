@@ -5,12 +5,25 @@ import './card.css'
 // eslint-disable-next-line react/function-component-definition
 const CardPet = ({ pet }) => {
     return (
-        // eslint-disable-next-line no-underscore-dangle
-
         <Link className="card h-100 text-decoration-none" to={`/pet/${pet._id}`}>
             <div className="card-img">
                 <img src={pet.photo} alt="cute pet" />
             </div>
+            {pet.isAdopted && (
+                <p className="badge rounded-pill mx-3" style={{ background: '#fc8800' }}>
+                    Adopted
+                </p>
+            )}
+            {pet.isFostered && (
+                <p className="badge rounded-pill mx-3" style={{ background: '#e75575' }}>
+                    Fostered
+                </p>
+            )}
+            {pet.isVirtualAdopted && (
+                <p className="badge rounded-pill mx-3" style={{ background: '#35d8e1' }}>
+                    Virtual Adopted
+                </p>
+            )}
 
             <p className="card-place fs-6">{pet.place}</p>
             <p className="card-title fs-5 fw-bold">{pet.name}</p>
