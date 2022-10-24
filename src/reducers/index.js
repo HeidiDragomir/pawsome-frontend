@@ -16,6 +16,7 @@ import {
     petUpdateReducer,
     petDeleteReducer,
     petMyListReducer,
+    petUpdateToAdoptedReducer,
 } from './petReducers'
 
 import {
@@ -69,6 +70,7 @@ const rootReducer = combineReducers({
     petCreate: petCreateReducer,
     petUpdate: petUpdateReducer,
     petDelete: petDeleteReducer,
+    petUpdateToAdopted: petUpdateToAdoptedReducer,
     eventList: eventListReducer,
     eventMyList: eventMyListReducer,
     eventInfo: eventDetailsReducer,
