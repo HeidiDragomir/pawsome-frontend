@@ -164,6 +164,7 @@ export const updatePet = (pet) => async (dispatch, getState) => {
 
         const config = {
             headers: {
+                'Content-Type': 'application/json',
                 Authorization: `Bearer ${userInfo.token}`,
             },
         }
@@ -226,16 +227,28 @@ export const deletePet = (id) => async (dispatch, getState) => {
     }
 }
 
-export const updatePetToAdopted = (pet) => async (dispatch) => {
+export const updatePetToAdopted = (pet) => async (dispatch, getState) => {
     try {
         dispatch({
             type: PET_UPDATE_TO_ADOPTED_REQUEST,
         })
 
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        }
+
         const { data } = await axios.put(
             // eslint-disable-next-line no-underscore-dangle
             `${process.env.REACT_APP_API_URL}/api/pets/${pet._id}`,
-            pet
+            pet,
+            config
         )
 
         dispatch({
