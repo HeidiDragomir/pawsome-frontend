@@ -36,14 +36,14 @@ const PetPage = () => {
         if (!userInfo) {
             navigate('/login')
         }
-        if (!pet.name || pet._id !== id) {
+        if (!pet || pet._id !== id) {
             dispatch(petDetails(id))
         } else {
             setAdopted(true)
             setFostered(true)
             setVirtual(true)
         }
-    }, [dispatch, id, userInfo, navigate, pet])
+    }, [dispatch, id, userInfo, navigate, pet, adopted, fostered, virtual])
 
     const handleDelete = () => {
         dispatch(deletePet(id))
