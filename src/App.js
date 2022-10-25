@@ -34,11 +34,13 @@ import EventsPage from './pages/EventsPage'
 import DonationsPage from './pages/DonationsPage'
 import VolunteersPage from './pages/VolunteersPage'
 import QuestionsPage from './pages/QuestionsPage'
+import ScrollToTop from './components/scrollToTop/ScrollToTop'
 
 // eslint-disable-next-line react/function-component-definition
 const App = () => {
     return (
         <Router>
+            <ScrollToTop />
             <Header />
             <Routes>
                 <Route path="/" element={<HomePage />} exact />
