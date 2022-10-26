@@ -87,19 +87,19 @@ const PetPage = () => {
                     <img src={pet.photo} alt={pet.name} />
                     <div className="my-3 d-flex align-items-center justify-content-center gap-3">
                         {pet.isAdopted && <Confetti width="1500px" height="800px" />}
-                        {!pet.isAdopted && (
+                        {!pet.isAdopted && userInfo._id !== pet.user && (
                             <Button onClick={handleIsAdopted} className="btn-adopt">
                                 <AiOutlineHome className="fs-4" />
                             </Button>
                         )}
                         {pet.isFostered && <Confetti width="1500px" height="800px" />}
-                        {!pet.isAdopted && !pet.isFostered && (
+                        {!pet.isAdopted && userInfo._id !== pet.user && !pet.isFostered && (
                             <Button onClick={handleIsFostered} className="btn-adopt">
                                 <FaCouch className="fs-4" />
                             </Button>
                         )}
                         {pet.isVirtualAdopted && <Confetti width="1500px" height="800px" />}
-                        {!pet.isAdopted && !pet.isVirtualAdopted && (
+                        {!pet.isAdopted && userInfo._id !== pet.user && !pet.isVirtualAdopted && (
                             <Button onClick={handleIsVirtual} className="btn-adopt">
                                 <RiHandHeartLine className="fs-4" />
                             </Button>
