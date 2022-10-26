@@ -53,6 +53,7 @@ import {
     questionUpdateReducer,
     questionDeleteReducer,
     questionMyListReducer,
+    questionAnswerCreateReducer,
 } from './questionReducers'
 
 const rootReducer = combineReducers({
@@ -95,6 +96,7 @@ const rootReducer = combineReducers({
     questionCreate: questionCreateReducer,
     questionUpdate: questionUpdateReducer,
     questionDelete: questionDeleteReducer,
+    questionAnswerCreate: questionAnswerCreateReducer,
 })
 
 export default rootReducer
