@@ -19,6 +19,9 @@ import {
     QUESTION_DELETE_REQUEST,
     QUESTION_DELETE_SUCCESS,
     QUESTION_DELETE_FAIL,
+    QUESTION_CREATE_ANSWER_REQUEST,
+    QUESTION_CREATE_ANSWER_SUCCESS,
+    QUESTION_CREATE_ANSWER_FAIL,
 } from './types'
 
 export const listQuestions = () => async (dispatch) => {
@@ -162,6 +165,7 @@ export const updateQuestion = (question) => async (dispatch, getState) => {
 
         const config = {
             headers: {
+                'Content-Type': 'application/json',
                 Authorization: `Bearer ${userInfo.token}`,
             },
         }
@@ -216,6 +220,42 @@ export const deleteQuestion = (id) => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: QUESTION_DELETE_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
+
+export const createAnswer = (id, answer) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: QUESTION_CREATE_ANSWER_REQUEST,
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        }
+        await axios.post(
+            `${process.env.REACT_APP_API_URL}/api/questions/${id}/answers`,
+            answer,
+            config
+        )
+
+        dispatch({
+            type: QUESTION_CREATE_ANSWER_SUCCESS,
+        })
+    } catch (error) {
+        dispatch({
+            type: QUESTION_CREATE_ANSWER_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message

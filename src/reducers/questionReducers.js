@@ -20,6 +20,10 @@ import {
     QUESTION_DELETE_REQUEST,
     QUESTION_DELETE_SUCCESS,
     QUESTION_DELETE_FAIL,
+    QUESTION_CREATE_ANSWER_REQUEST,
+    QUESTION_CREATE_ANSWER_SUCCESS,
+    QUESTION_CREATE_ANSWER_FAIL,
+    QUESTION_CREATE_ANSWER_RESET,
 } from '../actions/types'
 
 export const questionListReducer = (state = { questions: [] }, action) => {
@@ -54,7 +58,7 @@ export const questionMyListReducer = (state = { questions: [] }, action) => {
     }
 }
 
-export const questionDetailsReducer = (state = { question: {} }, action) => {
+export const questionDetailsReducer = (state = { question: { answers: [] } }, action) => {
     switch (action.type) {
         case QUESTION_DETAILS_REQUEST:
             return {
@@ -143,6 +147,21 @@ export const questionDeleteReducer = (state = {}, action) => {
                 loading: false,
                 error: action.payload,
             }
+        default:
+            return state
+    }
+}
+
+export const questionAnswerCreateReducer = (state = {}, action) => {
+    switch (action.type) {
+        case QUESTION_CREATE_ANSWER_REQUEST:
+            return { loading: true }
+        case QUESTION_CREATE_ANSWER_SUCCESS:
+            return { loading: false, success: true }
+        case QUESTION_CREATE_ANSWER_FAIL:
+            return { loading: false, error: action.payload }
+        case QUESTION_CREATE_ANSWER_RESET:
+            return {}
         default:
             return state
     }
