@@ -43,9 +43,10 @@ const MyVolunteersPage = () => {
                 </Button>
             </div>
             <div className="cards-container">
+                {!loading && volunteers.length === 0 && <h2>Nothing found.</h2>}
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
-                {volunteers.length === 0 && <h2>Nothing found.</h2>}
+
                 {volunteers.map((volunteer) => (
                     <CardVolunteer key={volunteer._id} volunteer={volunteer} />
                 ))}
