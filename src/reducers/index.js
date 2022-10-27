@@ -26,6 +26,7 @@ import {
     eventUpdateReducer,
     eventDeleteReducer,
     eventMyListReducer,
+    eventParticipantCreateReducer,
 } from './eventReducers'
 
 import {
@@ -78,6 +79,7 @@ const rootReducer = combineReducers({
     eventCreate: eventCreateReducer,
     eventUpdate: eventUpdateReducer,
     eventDelete: eventDeleteReducer,
+    eventParticipantCreate: eventParticipantCreateReducer,
     donationList: donationListReducer,
     donationMyList: donationMyListReducer,
     donationInfo: donationDetailsReducer,
