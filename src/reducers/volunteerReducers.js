@@ -20,6 +20,10 @@ import {
     VOLUNTEER_DELETE_REQUEST,
     VOLUNTEER_DELETE_SUCCESS,
     VOLUNTEER_DELETE_FAIL,
+    VOLUNTEER_CREATE_PARTICIPANT_REQUEST,
+    VOLUNTEER_CREATE_PARTICIPANT_SUCCESS,
+    VOLUNTEER_CREATE_PARTICIPANT_FAIL,
+    VOLUNTEER_CREATE_PARTICIPANT_RESET,
 } from '../actions/types'
 
 export const volunteerListReducer = (state = { volunteers: [] }, action) => {
@@ -143,6 +147,29 @@ export const volunteerDeleteReducer = (state = {}, action) => {
                 loading: false,
                 error: action.payload,
             }
+        default:
+            return state
+    }
+}
+
+export const volunteerParticipantCreateReducer = (state = {}, action) => {
+    switch (action.type) {
+        case VOLUNTEER_CREATE_PARTICIPANT_REQUEST:
+            return {
+                loading: true,
+            }
+        case VOLUNTEER_CREATE_PARTICIPANT_SUCCESS:
+            return {
+                loading: false,
+                success: true,
+            }
+        case VOLUNTEER_CREATE_PARTICIPANT_FAIL:
+            return {
+                loading: false,
+                error: action.payload,
+            }
+        case VOLUNTEER_CREATE_PARTICIPANT_RESET:
+            return {}
         default:
             return state
     }

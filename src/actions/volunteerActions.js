@@ -19,6 +19,9 @@ import {
     VOLUNTEER_DELETE_REQUEST,
     VOLUNTEER_DELETE_SUCCESS,
     VOLUNTEER_DELETE_FAIL,
+    VOLUNTEER_CREATE_PARTICIPANT_REQUEST,
+    VOLUNTEER_CREATE_PARTICIPANT_SUCCESS,
+    VOLUNTEER_CREATE_PARTICIPANT_FAIL,
 } from './types'
 
 export const listVolunteers = () => async (dispatch) => {
@@ -217,6 +220,44 @@ export const deleteVolunteer = (id) => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: VOLUNTEER_DELETE_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
+
+export const createVolunteerParticipant = (id, participant) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: VOLUNTEER_CREATE_PARTICIPANT_REQUEST,
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        }
+
+        await axios.post(
+            // eslint-disable-next-line no-underscore-dangle
+            `${process.env.REACT_APP_API_URL}/api/volunteers/${id}/participants`,
+            participant,
+            config
+        )
+
+        dispatch({
+            type: VOLUNTEER_CREATE_PARTICIPANT_SUCCESS,
+        })
+    } catch (error) {
+        dispatch({
+            type: VOLUNTEER_CREATE_PARTICIPANT_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message
