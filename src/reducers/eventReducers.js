@@ -20,6 +20,10 @@ import {
     EVENT_DELETE_REQUEST,
     EVENT_DELETE_SUCCESS,
     EVENT_DELETE_FAIL,
+    EVENT_CREATE_PARTICIPANT_REQUEST,
+    EVENT_CREATE_PARTICIPANT_SUCCESS,
+    EVENT_CREATE_PARTICIPANT_FAIL,
+    EVENT_CREATE_PARTICIPANT_RESET,
 } from '../actions/types'
 
 export const eventListReducer = (state = { events: [] }, action) => {
@@ -54,7 +58,7 @@ export const eventMyListReducer = (state = { events: [] }, action) => {
     }
 }
 
-export const eventDetailsReducer = (state = { event: {} }, action) => {
+export const eventDetailsReducer = (state = { event: { participants: [] } }, action) => {
     switch (action.type) {
         case EVENT_DETAILS_REQUEST:
             return {
@@ -143,6 +147,29 @@ export const eventDeleteReducer = (state = {}, action) => {
                 loading: false,
                 error: action.payload,
             }
+        default:
+            return state
+    }
+}
+
+export const eventParticipantCreateReducer = (state = {}, action) => {
+    switch (action.type) {
+        case EVENT_CREATE_PARTICIPANT_REQUEST:
+            return {
+                loading: true,
+            }
+        case EVENT_CREATE_PARTICIPANT_SUCCESS:
+            return {
+                loading: false,
+                success: true,
+            }
+        case EVENT_CREATE_PARTICIPANT_FAIL:
+            return {
+                loading: false,
+                error: action.payload,
+            }
+        case EVENT_CREATE_PARTICIPANT_RESET:
+            return {}
         default:
             return state
     }
