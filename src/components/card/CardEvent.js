@@ -12,6 +12,9 @@ const CardEvent = ({ event }) => {
             </div>
             <p className="card-title fs-5 fw-bold">{event.title}</p>
             <p className="card-description fs-6">{event.description}</p>
+            <p className="card-description fs-6">
+                created by <span className="fst-italic">{event.name}</span>
+            </p>
         </Link>
     )
 }
