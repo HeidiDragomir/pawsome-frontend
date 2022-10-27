@@ -88,19 +88,31 @@ const PetPage = () => {
                     <div className="my-3 d-flex align-items-center justify-content-center gap-3">
                         {pet.isAdopted && <Confetti width="1500px" height="800px" />}
                         {!pet.isAdopted && userInfo._id !== pet.user && (
-                            <Button onClick={handleIsAdopted} className="btn-adopt">
+                            <Button
+                                onClick={handleIsAdopted}
+                                className="btn-adopt"
+                                title="Adopt me"
+                            >
                                 <AiOutlineHome className="fs-4" />
                             </Button>
                         )}
                         {pet.isFostered && <Confetti width="1500px" height="800px" />}
                         {!pet.isAdopted && userInfo._id !== pet.user && !pet.isFostered && (
-                            <Button onClick={handleIsFostered} className="btn-adopt">
+                            <Button
+                                onClick={handleIsFostered}
+                                className="btn-adopt"
+                                title="Foster me"
+                            >
                                 <FaCouch className="fs-4" />
                             </Button>
                         )}
                         {pet.isVirtualAdopted && <Confetti width="1500px" height="800px" />}
                         {!pet.isAdopted && userInfo._id !== pet.user && !pet.isVirtualAdopted && (
-                            <Button onClick={handleIsVirtual} className="btn-adopt">
+                            <Button
+                                onClick={handleIsVirtual}
+                                className="btn-adopt"
+                                title="Adopt me virtually"
+                            >
                                 <RiHandHeartLine className="fs-4" />
                             </Button>
                         )}

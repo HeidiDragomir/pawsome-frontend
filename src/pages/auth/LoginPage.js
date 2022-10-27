@@ -18,7 +18,7 @@ const LoginPage = () => {
     const userLogin = useSelector((state) => state.userLogin)
     const { loading, error, userInfo } = userLogin
 
-    const redirect = searchParams.get('redirect') ? searchParams.get('redirect') : '/profile'
+    const redirect = searchParams.get('redirect') ? searchParams.get('redirect') : '/'
 
     useEffect(() => {
         if (userInfo) {

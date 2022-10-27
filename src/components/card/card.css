@@ -45,3 +45,13 @@
 .badge {
   width: 50%;
 }
+
+.card-items {
+  font-size: .8rem;
+  margin-bottom: 0;
+}
+
+.card-items-name {
+  color: var(--main-color-alt);
+  font-weight: bold;
+}

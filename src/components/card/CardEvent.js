@@ -10,11 +10,21 @@ const CardEvent = ({ event }) => {
             <div className="card-img">
                 <img src={event.photo} alt="event" />
             </div>
+
             <p className="card-title fs-5 fw-bold">{event.title}</p>
             <p className="card-description fs-6">{event.description}</p>
-            <p className="card-description fs-6">
+            <p className="card-description fs-6 border-bottom pb-4">
                 created by <span className="fst-italic">{event.name}</span>
             </p>
+            {event.participants.length > 0 && (
+                <div className="mx-3">
+                    {event.participants.map((participant) => (
+                        <p key={participant._id} className="link-black card-items">
+                            <span className="card-items-name">{participant.name}</span> is coming
+                        </p>
+                    ))}
+                </div>
+            )}
         </Link>
     )
 }

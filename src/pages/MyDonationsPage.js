@@ -43,9 +43,10 @@ const MyDonationsPage = () => {
                 </Button>
             </div>
             <div className="cards-container">
+                {!loading && donations.length === 0 && <h2>Nothing found.</h2>}
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
-                {donations.length === 0 && <h2>Nothing found.</h2>}
+
                 {donations.map((donation) => (
                     <CardDonation key={donation._id} donation={donation} />
                 ))}

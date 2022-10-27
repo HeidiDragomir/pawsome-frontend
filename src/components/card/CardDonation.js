@@ -12,6 +12,18 @@ const CardDonation = ({ donation }) => {
             </div>
             <p className="card-title fs-5 fw-bold">{donation.title}</p>
             <p className="card-description fs-6">{donation.description}</p>
+            <p className="card-description fs-6 border-bottom pb-4">
+                created by <span className="fst-italic">{donation.name}</span>
+            </p>
+            {donation.participants.length > 0 && (
+                <div className="mx-3">
+                    {donation.participants.map((participant) => (
+                        <p key={participant._id} className="link-black card-items">
+                            <span className="card-items-name">{participant.name}</span> wants it
+                        </p>
+                    ))}
+                </div>
+            )}
         </Link>
     )
 }
