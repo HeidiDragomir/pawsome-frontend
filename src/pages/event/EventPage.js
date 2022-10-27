@@ -1,17 +1,20 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/function-component-definition */
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import { BsArrowLeft } from 'react-icons/bs'
+import { MdOutlineEventNote } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-
-import { eventDetails, deleteEvent } from '../../actions/eventActions'
+// import Confetti from 'react-confetti'
+import { eventDetails, deleteEvent, createEventParticipant } from '../../actions/eventActions'
 import Loader from '../../components/loader/Loader'
 import Message from '../../components/message/Message'
+// import { EVENT_CREATE_PARTICIPANT_RESET } from '../../actions/types'
 
 const EventPage = () => {
+    const [attended, setAttended] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -23,18 +26,28 @@ const EventPage = () => {
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
 
+    // const eventParticipantCreate = useSelector((state) => state.eventParticipantCreate)
+    // const { success } = eventParticipantCreate
+
     useEffect(() => {
         if (!userInfo) {
             navigate('/login')
-        } else {
-            dispatch(eventDetails(id))
         }
-    }, [dispatch, id, userInfo, navigate])
+        if (!event || event._id !== id) {
+            dispatch(eventDetails(id))
+        } else {
+            setAttended(true)
+        }
+    }, [dispatch, id, userInfo, event, navigate, attended])
 
     const handleDelete = () => {
         dispatch(deleteEvent(id))
 
         navigate('/profile/events')
+    }
+
+    const handleOnClick = () => {
+        dispatch(createEventParticipant(id))
     }
 
     return (
@@ -51,6 +64,13 @@ const EventPage = () => {
 
                 <div className="event-item-img d-flex align-items-center justify-content-center bg-white">
                     <img src={event.photo} alt={event.title} />
+                    <div className="my-3 d-flex align-items-center justify-content-center gap-3">
+                        {attended && userInfo._id !== event.user && (
+                            <Button onClick={handleOnClick} className="btn-adopt">
+                                <MdOutlineEventNote className="fs-4" />
+                            </Button>
+                        )}
+                    </div>
                 </div>
                 <div className="event-item-info">
                     <h2 className="event-info mt-5 mb-3 fw-bold">{event.title}</h2>
