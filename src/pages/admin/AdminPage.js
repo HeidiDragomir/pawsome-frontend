@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 // import { LinkContainer } from 'react-router-bootstrap'
 import { Button, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,6 +15,7 @@ import './adminPage.css'
 
 // eslint-disable-next-line react/function-component-definition
 const AdminPage = () => {
+    const [message, setMessage] = useState()
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -37,7 +38,7 @@ const AdminPage = () => {
 
     const deleteHandler = (id) => {
         // eslint-disable-next-line no-alert, no-undef
-
+        setMessage('User deleted.')
         dispatch(deleteUser(id))
     }
 
@@ -56,6 +57,7 @@ const AdminPage = () => {
                 </div>
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
+                {message && <Message variant="danger">{message}</Message>}
                 <Table responsive="sm" hover>
                     <thead>
                         <tr className="tbl-row-align">

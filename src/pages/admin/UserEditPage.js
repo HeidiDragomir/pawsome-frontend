@@ -15,6 +15,7 @@ const UserEditPage = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [isAdmin, setIsAdmin] = useState(false)
+    const [message, setMessage] = useState()
 
     const { id } = useParams()
     const dispatch = useDispatch()
@@ -45,6 +46,7 @@ const UserEditPage = () => {
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(updateUser({ _id: id, name, email, isAdmin }))
+        setMessage('User updated.')
     }
     return (
         <section className="user-edit-section flex-grow-1 d-flex flex-column justify-content-center align-items-center">
@@ -56,8 +58,10 @@ const UserEditPage = () => {
             </div>
             <div className="user-create-container form-container bg-white rounded-5 border">
                 <h2 className="my-4">User Info</h2>
-                {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
+                {error && <Message variant="danger">{error}</Message>}
+                {message && <Message variant="success">{message}</Message>}
+
                 <form onSubmit={onSubmit}>
                     <div className="form-group">
                         <input

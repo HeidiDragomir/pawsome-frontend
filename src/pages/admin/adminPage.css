@@ -28,6 +28,11 @@
 /* User create section */
 
 .form-admin {
-    display: flex;
-    align-items:flex-end;
+    display: inline-flex;
+    align-items:center;
+    justify-content: center;
+}
+.input-admin {
+    margin-bottom: 0 !important;
+    margin-left: 1rem;
 }
