@@ -81,6 +81,9 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
             type: USER_UPDATE_PROFILE_SUCCESS,
             payload: data,
         })
+
+        // eslint-disable-next-line no-undef
+        localStorage.setItem('userInfo', JSON.stringify(data))
     } catch (error) {
         dispatch({
             type: USER_UPDATE_PROFILE_FAIL,
