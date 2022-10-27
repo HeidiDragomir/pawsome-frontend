@@ -36,6 +36,7 @@ import {
     donationUpdateReducer,
     donationDeleteReducer,
     donationMyListReducer,
+    donationParticipantCreateReducer,
 } from './donationReducers'
 
 import {
@@ -86,6 +87,7 @@ const rootReducer = combineReducers({
     donationCreate: donationCreateReducer,
     donationUpdate: donationUpdateReducer,
     donationDelete: donationDeleteReducer,
+    donationParticipantCreate: donationParticipantCreateReducer,
     volunteerList: volunteerListReducer,
     volunteerMyList: volunteerMyListReducer,
     volunteerInfo: volunteerDetailsReducer,

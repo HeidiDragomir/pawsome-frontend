@@ -20,6 +20,10 @@ import {
     DONATION_DELETE_REQUEST,
     DONATION_DELETE_SUCCESS,
     DONATION_DELETE_FAIL,
+    DONATION_CREATE_PARTICIPANT_REQUEST,
+    DONATION_CREATE_PARTICIPANT_SUCCESS,
+    DONATION_CREATE_PARTICIPANT_FAIL,
+    DONATION_CREATE_PARTICIPANT_RESET,
 } from '../actions/types'
 
 export const donationListReducer = (state = { donations: [] }, action) => {
@@ -143,6 +147,29 @@ export const donationDeleteReducer = (state = {}, action) => {
                 loading: false,
                 error: action.payload,
             }
+        default:
+            return state
+    }
+}
+
+export const donationParticipantCreateReducer = (state = {}, action) => {
+    switch (action.type) {
+        case DONATION_CREATE_PARTICIPANT_REQUEST:
+            return {
+                loading: true,
+            }
+        case DONATION_CREATE_PARTICIPANT_SUCCESS:
+            return {
+                loading: false,
+                success: true,
+            }
+        case DONATION_CREATE_PARTICIPANT_FAIL:
+            return {
+                loading: false,
+                error: action.payload,
+            }
+        case DONATION_CREATE_PARTICIPANT_RESET:
+            return {}
         default:
             return state
     }
