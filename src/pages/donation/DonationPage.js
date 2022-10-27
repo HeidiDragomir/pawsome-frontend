@@ -1,17 +1,24 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/function-component-definition */
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import { BsArrowLeft } from 'react-icons/bs'
+import { BiDonateHeart } from 'react-icons/bi'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
-import { donationDetails, deleteDonation } from '../../actions/donationActions'
+import {
+    donationDetails,
+    deleteDonation,
+    createDonationParticipant,
+} from '../../actions/donationActions'
 import Loader from '../../components/loader/Loader'
 import Message from '../../components/message/Message'
 
 const DonationPage = () => {
+    const [wanted, setWanted] = useState(false)
+    const [message, setMessage] = useState()
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -26,10 +33,13 @@ const DonationPage = () => {
     useEffect(() => {
         if (!userInfo) {
             navigate('/login')
-        } else {
-            dispatch(donationDetails(id))
         }
-    }, [dispatch, id, userInfo, navigate])
+        if (!donation || donation._id !== id) {
+            dispatch(donationDetails(id))
+        } else {
+            setWanted(true)
+        }
+    }, [dispatch, id, userInfo, navigate, donation, wanted])
 
     const handleDelete = () => {
         dispatch(deleteDonation(id))
@@ -37,10 +47,15 @@ const DonationPage = () => {
         navigate('/profile/donations')
     }
 
+    const handleOnClick = () => {
+        dispatch(createDonationParticipant(id))
+        setMessage('Please contact me for more info!')
+    }
+
     return (
         <section className="donation-section flex-grow-1 d-flex flex-column justify-content-center align-items-center">
             <div className="mt-5 ms-5">
-                <Link to="/profile/donations" className="link-black">
+                <Link to="/donations" className="link-black">
                     <BsArrowLeft className="icon-back" />
                     Back
                 </Link>
@@ -48,12 +63,19 @@ const DonationPage = () => {
             <div className="donation-item form-container bg-white rounded-5 border">
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
-
-                <div className="donation-item-img d-flex align-items-center justify-content-center bg-white">
+                {message && <Message variant="success">{message}</Message>}
+                <div className="donation-item-img d-flex flex-column align-items-center justify-content-center bg-white">
                     <img src={donation.photo} alt={donation.title} />
+                    <div className="my-3 d-flex align-items-center justify-content-center gap-3">
+                        {wanted && userInfo._id !== donation.user && (
+                            <Button onClick={handleOnClick} className="btn-adopt">
+                                <BiDonateHeart className="fs-4" />
+                            </Button>
+                        )}
+                    </div>
                 </div>
                 <div className="donation-item-info">
-                    <p className="donation-info mt-5 mb-3 fw-bold">{donation.title}</p>
+                    <h2 className="event-info mt-5 mb-3 fw-bold">{donation.title}</h2>
                     <p className="donation-about">{donation.description}</p>
                 </div>
 
