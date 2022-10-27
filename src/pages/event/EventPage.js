@@ -15,6 +15,7 @@ import Message from '../../components/message/Message'
 
 const EventPage = () => {
     const [attended, setAttended] = useState(false)
+    const [message, setMessage] = useState()
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -48,12 +49,13 @@ const EventPage = () => {
 
     const handleOnClick = () => {
         dispatch(createEventParticipant(id))
+        setMessage('Perfect! We will see there!')
     }
 
     return (
         <section className="event-section flex-grow-1 d-flex flex-column justify-content-center align-items-center">
             <div className="mt-5 ms-5">
-                <Link to="/profile/events" className="link-black">
+                <Link to="/events" className="link-black">
                     <BsArrowLeft className="icon-back" />
                     Back
                 </Link>
@@ -61,13 +63,14 @@ const EventPage = () => {
             <div className="event-item form-container bg-white rounded-5 border">
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
+                {message && <Message variant="success">{message}</Message>}
 
                 <div className="event-item-img d-flex flex-column align-items-center justify-content-center bg-white">
                     <img src={event.photo} alt={event.title} />
                     <div className="my-3 d-flex align-items-center justify-content-center gap-3">
                         {attended && userInfo._id !== event.user && (
                             <Button onClick={handleOnClick} className="btn-adopt">
-                                <MdOutlineEventNote className="fs-4" />
+                                <MdOutlineEventNote className="fs-4" /> Attend
                             </Button>
                         )}
                     </div>

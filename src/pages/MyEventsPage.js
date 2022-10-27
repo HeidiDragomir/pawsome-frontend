@@ -5,10 +5,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { BsArrowLeft } from 'react-icons/bs'
 import { Link, useNavigate } from 'react-router-dom'
 import { listMyEvents } from '../actions/eventActions'
-import CardEvent from '../components/card/CardEvent'
 import Loader from '../components/loader/Loader'
 import Message from '../components/message/Message'
 import './cardsPage.css'
+import CardEvent from '../components/card/CardEvent'
 
 // eslint-disable-next-line react/function-component-definition
 const MyEventsPage = () => {
@@ -43,9 +43,10 @@ const MyEventsPage = () => {
                 </Button>
             </div>
             <div className="cards-container">
+                {!loading && events.length === 0 && <h2>Nothing found.</h2>}
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
-                {events.length === 0 && <h2>Nothing found.</h2>}
+
                 {events.map((event) => (
                     <CardEvent key={event._id} event={event} />
                 ))}
