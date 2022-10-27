@@ -43,7 +43,7 @@ const PetPage = () => {
             setFostered(true)
             setVirtual(true)
         }
-    }, [dispatch, id, userInfo, navigate, pet, adopted, fostered, virtual])
+    }, [dispatch, id, userInfo, navigate, pet])
 
     const handleDelete = () => {
         dispatch(deletePet(id))
@@ -51,7 +51,7 @@ const PetPage = () => {
     }
 
     const handleIsAdopted = () => {
-        setAdopted(true)
+        // setAdopted(true)
         dispatch(updatePetToAdopted({ _id: id, isAdopted: adopted }))
         // eslint-disable-next-line no-undef
         window.location.reload(true)
@@ -108,14 +108,15 @@ const PetPage = () => {
                 </div>
                 <div className="pet-item-info">
                     <h2 className="pet-name mt-5 mb-3 fw-bold">{pet.name}</h2>
-                    <p className="pet-info">{`${pet.age} year/s - ${pet.gender}`}</p>
+                    <p className="pet-info">{`${pet.age} years - ${pet.gender}`}</p>
                     <p className="pet-info2">{`${pet.name} is a ${pet.size} ball of joy waiting to meet you in ${pet.place}.`}</p>
                     <p className="pet-about">
                         <u>More info about {pet.name}:</u> {pet.about}
                     </p>
-                    <p className="pet-about">
-                        <u>Info about us:</u>
-                    </p>
+                    {/* <p className="pet-about">
+                        <u>More about us:</u>
+                    </p> */}
+                    {/* <p>{userInfo.details}</p> */}
                 </div>
 
                 {userInfo._id === pet.user ? (
