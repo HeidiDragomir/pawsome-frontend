@@ -19,6 +19,9 @@ import {
     DONATION_DELETE_REQUEST,
     DONATION_DELETE_SUCCESS,
     DONATION_DELETE_FAIL,
+    DONATION_CREATE_PARTICIPANT_REQUEST,
+    DONATION_CREATE_PARTICIPANT_SUCCESS,
+    DONATION_CREATE_PARTICIPANT_FAIL,
 } from './types'
 
 export const listDonations = () => async (dispatch) => {
@@ -217,6 +220,44 @@ export const deleteDonation = (id) => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: DONATION_DELETE_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
+
+export const createDonationParticipant = (id, participant) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: DONATION_CREATE_PARTICIPANT_REQUEST,
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        }
+
+        await axios.post(
+            // eslint-disable-next-line no-underscore-dangle
+            `${process.env.REACT_APP_API_URL}/api/donations/${id}/participants`,
+            participant,
+            config
+        )
+
+        dispatch({
+            type: DONATION_CREATE_PARTICIPANT_SUCCESS,
+        })
+    } catch (error) {
+        dispatch({
+            type: DONATION_CREATE_PARTICIPANT_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message
