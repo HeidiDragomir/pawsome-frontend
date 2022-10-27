@@ -20,6 +20,9 @@ const VolunteersPage = () => {
     return (
         <section className="cards-section">
             <div className="cards-container">
+                {!loading && volunteers.length === 0 && (
+                    <h4 className="text-center">Volunteer not found.</h4>
+                )}
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
 
