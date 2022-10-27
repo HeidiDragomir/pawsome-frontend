@@ -19,6 +19,9 @@ import {
     EVENT_DELETE_REQUEST,
     EVENT_DELETE_SUCCESS,
     EVENT_DELETE_FAIL,
+    EVENT_CREATE_PARTICIPANT_REQUEST,
+    EVENT_CREATE_PARTICIPANT_SUCCESS,
+    EVENT_CREATE_PARTICIPANT_FAIL,
 } from './types'
 
 export const listEvents = () => async (dispatch) => {
@@ -217,6 +220,44 @@ export const deleteEvent = (id) => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: EVENT_DELETE_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
+
+export const createEventParticipant = (id, participant) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: EVENT_CREATE_PARTICIPANT_REQUEST,
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        }
+
+        await axios.post(
+            // eslint-disable-next-line no-underscore-dangle
+            `${process.env.REACT_APP_API_URL}/api/events/${id}/participants`,
+            participant,
+            config
+        )
+
+        dispatch({
+            type: EVENT_CREATE_PARTICIPANT_SUCCESS,
+        })
+    } catch (error) {
+        dispatch({
+            type: EVENT_CREATE_PARTICIPANT_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message
