@@ -62,7 +62,7 @@ const EventPage = () => {
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
 
-                <div className="event-item-img d-flex align-items-center justify-content-center bg-white">
+                <div className="event-item-img d-flex flex-column align-items-center justify-content-center bg-white">
                     <img src={event.photo} alt={event.title} />
                     <div className="my-3 d-flex align-items-center justify-content-center gap-3">
                         {attended && userInfo._id !== event.user && (
