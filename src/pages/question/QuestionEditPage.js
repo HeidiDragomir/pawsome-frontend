@@ -14,6 +14,7 @@ const QuestionEditPage = () => {
     const [title, setTitle] = useState('')
     const [photo, setPhoto] = useState('')
     const [description, setDescription] = useState('')
+    const [message, setMessage] = useState('')
 
     const { id } = useParams()
     const navigate = useNavigate()
@@ -28,7 +29,6 @@ const QuestionEditPage = () => {
     useEffect(() => {
         if (success) {
             dispatch({ type: QUESTION_UPDATE_RESET })
-            navigate('/profile/questions')
         } else {
             // eslint-disable-next-line no-lonely-if
             if (!question.title || question._id !== id) {
@@ -44,7 +44,10 @@ const QuestionEditPage = () => {
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(updateQuestion({ _id: id, title, photo, description }))
-        navigate('/profile/questions')
+        setMessage('Question updated.')
+        setTimeout(() => {
+            navigate('/profile/questions')
+        }, 2000)
     }
 
     return (
@@ -59,6 +62,7 @@ const QuestionEditPage = () => {
                 <h2>Update Question</h2>
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
+                {message && <Message variant="success">{message}</Message>}
 
                 <form onSubmit={onSubmit}>
                     <div className="form-group">

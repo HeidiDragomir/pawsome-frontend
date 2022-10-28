@@ -12,6 +12,7 @@ const EventCreatePage = () => {
     const [title, setTitle] = useState('')
     const [photo, setPhoto] = useState('')
     const [description, setDescription] = useState('')
+    const [message, setMessage] = useState('')
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -25,13 +26,16 @@ const EventCreatePage = () => {
     useEffect(() => {
         if (success) {
             dispatch({ type: EVENT_CREATE_RESET })
-            navigate('/profile/events')
         }
     }, [success, navigate, dispatch])
 
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(createEvent(title, photo, description))
+        setMessage('Event created.')
+        setTimeout(() => {
+            navigate('/profile/events')
+        }, 2000)
     }
 
     return (
@@ -44,6 +48,7 @@ const EventCreatePage = () => {
             </div>
             <div className="event-create-container form-container bg-white rounded-5 border">
                 <h2 className="my-4">Add Event Info</h2>
+                {message && <Message variant="success">{message}</Message>}
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
 

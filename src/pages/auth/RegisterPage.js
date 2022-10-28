@@ -14,7 +14,8 @@ const RegisterPage = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
-    const [message, setMessage] = useState()
+    const [message, setMessage] = useState('')
+    const [messagePwd, setMessagePwd] = useState('')
     const [searchParams] = useSearchParams()
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -25,14 +26,20 @@ const RegisterPage = () => {
 
     useEffect(() => {
         if (userInfo) {
-            navigate(redirect)
+            setMessage('Account created.')
+            setTimeout(() => {
+                navigate(redirect)
+            }, 2000)
         }
     }, [navigate, userInfo, redirect])
 
     const onSubmit = (e) => {
         e.preventDefault()
         if (password !== confirmPassword) {
-            setMessage(`It's not the same password. Please try again!`)
+            setMessagePwd(`It's not the same password. Please try again!`)
+            setTimeout(() => {
+                setMessagePwd('')
+            }, 2000)
         } else {
             dispatch(register(name, email, password))
         }
@@ -46,6 +53,7 @@ const RegisterPage = () => {
                     Sign up
                 </h2>
                 {message && <Message variant="danger">{message}</Message>}
+                {messagePwd && <Message variant="danger">{messagePwd}</Message>}
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
                 <form onSubmit={onSubmit}>

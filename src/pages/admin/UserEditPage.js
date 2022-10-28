@@ -15,7 +15,7 @@ const UserEditPage = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [isAdmin, setIsAdmin] = useState(false)
-    const [message, setMessage] = useState()
+    const [message, setMessage] = useState('')
 
     const { id } = useParams()
     const dispatch = useDispatch()
@@ -27,10 +27,18 @@ const UserEditPage = () => {
     const userUpdate = useSelector((state) => state.userUpdate)
     const { success } = userUpdate
 
+    const onSubmit = (e) => {
+        e.preventDefault()
+        dispatch(updateUser({ _id: id, name, email, isAdmin }))
+        setMessage('User updated.')
+        setTimeout(() => {
+            navigate('/admin')
+        }, 2000)
+    }
+
     useEffect(() => {
         if (success) {
             dispatch({ type: USER_UPDATE_RESET })
-            navigate('/admin')
         } else {
             // eslint-disable-next-line no-underscore-dangle
             if (!user.name || user._id !== id) {
@@ -43,11 +51,6 @@ const UserEditPage = () => {
         }
     }, [dispatch, id, user, success, navigate])
 
-    const onSubmit = (e) => {
-        e.preventDefault()
-        dispatch(updateUser({ _id: id, name, email, isAdmin }))
-        setMessage('User updated.')
-    }
     return (
         <section className="user-edit-section flex-grow-1 d-flex flex-column justify-content-center align-items-center">
             <div className="mt-5 ms-5">
