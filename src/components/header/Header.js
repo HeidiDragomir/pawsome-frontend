@@ -29,7 +29,7 @@ const Header = () => {
     return (
         <header className="header">
             <nav>
-                <Navbar bg="light" expand="lg">
+                <Navbar bg="light" expand="xl">
                     <Container>
                         <Nav.Link className="logo-container" href="/">
                             <div className="logo">

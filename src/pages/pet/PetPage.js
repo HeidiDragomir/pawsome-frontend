@@ -43,7 +43,7 @@ const PetPage = () => {
             setFostered(true)
             setVirtual(true)
         }
-    }, [dispatch, id, userInfo, navigate, pet])
+    }, [dispatch, id, userInfo, navigate, pet, adopted, fostered, virtual])
 
     const handleDelete = () => {
         dispatch(deletePet(id))
@@ -51,24 +51,27 @@ const PetPage = () => {
     }
 
     const handleIsAdopted = () => {
-        // setAdopted(true)
         dispatch(updatePetToAdopted({ _id: id, isAdopted: adopted }))
-        // eslint-disable-next-line no-undef
-        window.location.reload(true)
-    }
-
-    const handleIsVirtual = () => {
-        setVirtual(true)
-        dispatch(updatePetToAdopted({ _id: id, isVirtualAdopted: virtual }))
-        // eslint-disable-next-line no-undef
-        window.location.reload(true)
+        setTimeout(() => {
+            // eslint-disable-next-line no-undef
+            window.location.reload()
+        }, 1000)
     }
 
     const handleIsFostered = () => {
-        setFostered(true)
         dispatch(updatePetToAdopted({ _id: id, isFostered: fostered }))
-        // eslint-disable-next-line no-undef
-        window.location.reload(true)
+        setTimeout(() => {
+            // eslint-disable-next-line no-undef
+            window.location.reload()
+        }, 1000)
+    }
+
+    const handleIsVirtual = () => {
+        dispatch(updatePetToAdopted({ _id: id, isVirtualAdopted: virtual }))
+        setTimeout(() => {
+            // eslint-disable-next-line no-undef
+            window.location.reload()
+        }, 1000)
     }
 
     return (
