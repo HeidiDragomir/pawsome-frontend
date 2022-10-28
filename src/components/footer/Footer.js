@@ -99,7 +99,7 @@ const Footer = () => {
                     </Link>
                 </div>
                 <div className="footer-socials-copyright">
-                    <p className="m-auto p-2">&copy; 2022 Pawsome</p>
+                    <p className="m-auto px-5">&copy; 2022 Pawsome</p>
                 </div>
             </div>
         </footer>
