@@ -16,6 +16,8 @@ import Message from '../../components/message/Message'
 
 const QuestionPage = () => {
     const [text, setText] = useState('')
+    const [message, setMessage] = useState('')
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -43,8 +45,10 @@ const QuestionPage = () => {
 
     const handleDelete = () => {
         dispatch(deleteQuestion(id))
-
-        navigate('/profile/questions')
+        setMessage('Question deleted.')
+        setTimeout(() => {
+            navigate('/profile/questions')
+        }, 2000)
     }
 
     const onSubmit = (e) => {
@@ -65,6 +69,8 @@ const QuestionPage = () => {
                     <Loader />
                 ) : error ? (
                     <Message variant="danger">{error}</Message>
+                ) : message ? (
+                    <Message variant="danger">{message}</Message>
                 ) : (
                     <>
                         <div className="question-item-img d-flex align-items-center justify-content-center bg-white">

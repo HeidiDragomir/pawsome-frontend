@@ -18,7 +18,9 @@ import Message from '../../components/message/Message'
 
 const DonationPage = () => {
     const [wanted, setWanted] = useState(false)
-    const [message, setMessage] = useState()
+    const [message, setMessage] = useState('')
+    const [messageDel, setMessageDel] = useState('')
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -43,8 +45,10 @@ const DonationPage = () => {
 
     const handleDelete = () => {
         dispatch(deleteDonation(id))
-
-        navigate('/profile/donations')
+        setMessageDel('Donation deleted.')
+        setTimeout(() => {
+            navigate('/profile/donations')
+        }, 2000)
     }
 
     const handleOnClick = () => {
@@ -64,6 +68,7 @@ const DonationPage = () => {
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
                 {message && <Message variant="success">{message}</Message>}
+                {messageDel && <Message variant="danger">{messageDel}</Message>}
                 <div className="donation-item-img d-flex flex-column align-items-center justify-content-center bg-white">
                     <img src={donation.photo} alt={donation.title} />
                     <div className="my-3 d-flex align-items-center justify-content-center gap-3">

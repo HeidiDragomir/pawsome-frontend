@@ -15,7 +15,9 @@ import Message from '../../components/message/Message'
 
 const EventPage = () => {
     const [attended, setAttended] = useState(false)
-    const [message, setMessage] = useState()
+    const [message, setMessage] = useState('')
+    const [messageDel, setMessageDel] = useState('')
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -26,9 +28,6 @@ const EventPage = () => {
 
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
-
-    // const eventParticipantCreate = useSelector((state) => state.eventParticipantCreate)
-    // const { success } = eventParticipantCreate
 
     useEffect(() => {
         if (!userInfo) {
@@ -43,8 +42,10 @@ const EventPage = () => {
 
     const handleDelete = () => {
         dispatch(deleteEvent(id))
-
-        navigate('/profile/events')
+        setMessageDel('Event deleted.')
+        setTimeout(() => {
+            navigate('/profile/events')
+        }, 2000)
     }
 
     const handleOnClick = () => {
@@ -64,7 +65,7 @@ const EventPage = () => {
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
                 {message && <Message variant="success">{message}</Message>}
-
+                {messageDel && <Message variant="danger">{messageDel}</Message>}
                 <div className="event-item-img d-flex flex-column align-items-center justify-content-center bg-white">
                     <img src={event.photo} alt={event.title} />
                     <div className="my-3 d-flex align-items-center justify-content-center gap-3">
