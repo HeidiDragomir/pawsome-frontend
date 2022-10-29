@@ -123,6 +123,7 @@ const PetPage = () => {
                         )}
                     </div>
                 </div>
+
                 <div className="pet-item-info">
                     <h2 className="pet-name mt-5 mb-3 fw-bold">{pet.name}</h2>
                     <p className="pet-info">{`${pet.age} years - ${pet.gender}`}</p>
@@ -130,10 +131,13 @@ const PetPage = () => {
                     <p className="pet-about">
                         <u>More info about {pet.name}:</u> {pet.about}
                     </p>
-                    {/* <p className="pet-about">
+                    <p className="pet-about">
                         <u>More about us:</u>
-                    </p> */}
-                    {/* <p>{userInfo.details}</p> */}
+                    </p>
+                    <p>{pet.userDetails}</p>
+                    <Button variant="info" href={`mailto:${pet.userEmail}`}>
+                        Contact us by email
+                    </Button>
                 </div>
 
                 {userInfo._id === pet.user ? (
