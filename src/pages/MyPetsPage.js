@@ -43,9 +43,9 @@ const MyPetsPage = () => {
                 </Button>
             </div>
             <div className="cards-container">
+                {!loading && pets.length === 0 && <h2>Nothing found.</h2>}
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
-                {pets.length === 0 && <h2>Nothing found.</h2>}
                 {pets.map((pet) => (
                     <CardPet key={pet._id} pet={pet} />
                 ))}

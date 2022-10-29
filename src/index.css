@@ -37,6 +37,14 @@ body {
   padding: 1em;
 }
 
+.page-not-found {
+  min-height: 60vh;
+}
+
+.details-item {
+  background-color: var(--main-color);
+}
+
 /* Buttons/logo/icon */
 
 .btn-main-color {
