@@ -1,5 +1,6 @@
 .cards-section {
     padding: 5em 1em;
+    min-height: 80vh;
 }
 
 .cards-container {

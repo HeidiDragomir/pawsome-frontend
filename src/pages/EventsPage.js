@@ -20,9 +20,7 @@ const EventsPage = () => {
     return (
         <section className="cards-section">
             <div className="cards-container">
-                {!loading && events.length === 0 && (
-                    <h4 className="text-center">Event not found.</h4>
-                )}
+                {!loading && events.length === 0 && <h4 className="text-center">Nothing found.</h4>}
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
 
