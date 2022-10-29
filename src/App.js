@@ -35,6 +35,7 @@ import DonationsPage from './pages/DonationsPage'
 import VolunteersPage from './pages/VolunteersPage'
 import QuestionsPage from './pages/QuestionsPage'
 import ScrollToTop from './components/scrollToTop/ScrollToTop'
+import PageNotFound from './pages/PageNotFound'
 
 // eslint-disable-next-line react/function-component-definition
 const App = () => {
@@ -43,8 +44,8 @@ const App = () => {
             <ScrollToTop />
             <Header />
             <Routes>
-                <Route path="/" element={<HomePage />} exact />
-                <Route path="/search/:keyword" element={<HomePage />} exact />
+                <Route path="/" element={<HomePage />} />
+                <Route path="/search/:keyword" element={<HomePage />} />
                 <Route path="/pets" element={<PetsPage />} />
                 <Route path="/events" element={<EventsPage />} />
                 <Route path="/donations" element={<DonationsPage />} />
@@ -85,6 +86,7 @@ const App = () => {
                 <Route path="/admin" element={<AdminPage />} />
                 <Route path="/admin/user/create" element={<UserCreatePage />} />
                 <Route path="/admin/user/:id/edit" element={<UserEditPage />} />
+                <Route path="*" element={<PageNotFound />} />
             </Routes>
             <Footer />
         </Router>
