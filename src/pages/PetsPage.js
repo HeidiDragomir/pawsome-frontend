@@ -15,9 +15,6 @@ const PetsPage = () => {
     const petList = useSelector((state) => state.petList)
     const { loading, error, pets } = petList
 
-    // const petInfo = useSelector((state) => state.petInfo)
-    // const { pet } = petInfo
-
     useEffect(() => {
         if (keyword) {
             dispatch(listPets(keyword))
@@ -29,7 +26,7 @@ const PetsPage = () => {
     return (
         <section className="cards-section">
             <div className="cards-container">
-                {!loading && pets.length === 0 && <h4 className="text-center">Pet not found.</h4>}
+                {!loading && pets.length === 0 && <h4 className="text-center">Nothing found.</h4>}
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
                 {pets.map((pet) => (

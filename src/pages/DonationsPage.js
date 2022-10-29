@@ -21,7 +21,7 @@ const DonationsPage = () => {
         <section className="cards-section">
             <div className="cards-container">
                 {!loading && donations.length === 0 && (
-                    <h4 className="text-center">Donation not found.</h4>
+                    <h4 className="text-center">Nothing found.</h4>
                 )}
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}

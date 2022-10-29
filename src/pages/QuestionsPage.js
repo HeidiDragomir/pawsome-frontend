@@ -22,6 +22,7 @@ const QuestionsPage = () => {
             <div className="cards-container">
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
+                {!loading && questions.length === 0 && <h2>Nothing found.</h2>}
 
                 {questions.map((question) => (
                     // eslint-disable-next-line no-underscore-dangle
