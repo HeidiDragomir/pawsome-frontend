@@ -14,6 +14,7 @@ const VolunteerEditPage = () => {
     const [title, setTitle] = useState('')
     const [photo, setPhoto] = useState('')
     const [description, setDescription] = useState('')
+    const [message, setMessage] = useState('')
 
     const { id } = useParams()
     const navigate = useNavigate()
@@ -28,7 +29,6 @@ const VolunteerEditPage = () => {
     useEffect(() => {
         if (success) {
             dispatch({ type: VOLUNTEER_UPDATE_RESET })
-            navigate('/profile/volunteers')
         } else {
             // eslint-disable-next-line no-lonely-if
             if (!volunteer.title || volunteer._id !== id) {
@@ -44,7 +44,10 @@ const VolunteerEditPage = () => {
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(updateVolunteer({ _id: id, title, photo, description }))
-        navigate('/profile/volunteers')
+        setMessage('Updated.')
+        setTimeout(() => {
+            navigate('/profile/volunteers')
+        }, 2000)
     }
 
     return (
@@ -59,7 +62,7 @@ const VolunteerEditPage = () => {
                 <h2>Update Volunteer Info</h2>
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
-
+                {message && <Message variant="success">{message}</Message>}
                 <form onSubmit={onSubmit}>
                     <div className="form-group">
                         <input

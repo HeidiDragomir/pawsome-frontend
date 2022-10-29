@@ -16,6 +16,7 @@ const PetCreatePage = () => {
     const [about, setAbout] = useState('')
     const [photo, setPhoto] = useState('')
     const [place, setPlace] = useState('')
+    const [message, setMessage] = useState('')
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -23,19 +24,19 @@ const PetCreatePage = () => {
     const petCreate = useSelector((state) => state.petCreate)
     const { loading, error, success } = petCreate
 
-    // const petInfo = useSelector((state) => state.petInfo)
-    // const { pet } = petInfo
-
     useEffect(() => {
         if (success) {
             dispatch({ type: PET_CREATE_RESET })
-            navigate('/profile/pets')
         }
     }, [success, navigate, dispatch])
 
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(createPet(name, gender, age, size, about, photo, place))
+        setMessage('Pet created.')
+        setTimeout(() => {
+            navigate('/profile/pets')
+        }, 2000)
     }
 
     return (
@@ -48,6 +49,7 @@ const PetCreatePage = () => {
             </div>
             <div className="pet-create-container form-container bg-white rounded-5 border">
                 <h2 className="my-4">Add Pet Info</h2>
+                {message && <Message variant="success">{message}</Message>}
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
 

@@ -14,6 +14,7 @@ const EventEditPage = () => {
     const [title, setTitle] = useState('')
     const [photo, setPhoto] = useState('')
     const [description, setDescription] = useState('')
+    const [message, setMessage] = useState('')
 
     const { id } = useParams()
     const navigate = useNavigate()
@@ -28,7 +29,6 @@ const EventEditPage = () => {
     useEffect(() => {
         if (success) {
             dispatch({ type: EVENT_UPDATE_RESET })
-            navigate('/profile/events')
         } else {
             // eslint-disable-next-line no-lonely-if
             if (!event.title || event._id !== id) {
@@ -44,7 +44,10 @@ const EventEditPage = () => {
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(updateEvent({ _id: id, title, photo, description }))
-        navigate('/profile/events')
+        setMessage('Event updated.')
+        setTimeout(() => {
+            navigate('/profile/events')
+        }, 2000)
     }
 
     return (
@@ -59,7 +62,7 @@ const EventEditPage = () => {
                 <h2>Update Event Info</h2>
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
-
+                {message && <Message variant="success">{message}</Message>}
                 <form onSubmit={onSubmit}>
                     <div className="form-group">
                         <input

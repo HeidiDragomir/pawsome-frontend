@@ -15,7 +15,7 @@ import './adminPage.css'
 
 // eslint-disable-next-line react/function-component-definition
 const AdminPage = () => {
-    const [message, setMessage] = useState()
+    const [message, setMessage] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -37,9 +37,12 @@ const AdminPage = () => {
     }, [dispatch, navigate, userInfo, success])
 
     const deleteHandler = (id) => {
-        // eslint-disable-next-line no-alert, no-undef
-        setMessage('User deleted.')
         dispatch(deleteUser(id))
+        setMessage('User deleted.')
+        setTimeout(() => {
+            // eslint-disable-next-line no-undef
+            window.location.reload()
+        }, 2000)
     }
 
     return (

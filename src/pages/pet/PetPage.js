@@ -18,14 +18,12 @@ const PetPage = () => {
     const [adopted, setAdopted] = useState(false)
     const [fostered, setFostered] = useState(false)
     const [virtual, setVirtual] = useState(false)
+    const [message, setMessage] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const petInfo = useSelector((state) => state.petInfo)
     const { loading, error, pet } = petInfo
-
-    // const petUpdateToAdopted = useSelector((state) => state.petUpdateToAdopted)
-    // const { success } = petUpdateToAdopted
 
     const { id } = useParams()
 
@@ -47,7 +45,10 @@ const PetPage = () => {
 
     const handleDelete = () => {
         dispatch(deletePet(id))
-        navigate('/profile/pets')
+        setMessage('Pet deleted.')
+        setTimeout(() => {
+            navigate('/profile/pets')
+        }, 2000)
     }
 
     const handleIsAdopted = () => {
@@ -86,6 +87,7 @@ const PetPage = () => {
             <div className="pet-item form-container bg-white rounded-5 border">
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
+                {message && <Message variant="danger">{message}</Message>}
                 <div className="pet-item-img d-flex flex-column align-items-center justify-content-center bg-white">
                     <img src={pet.photo} alt={pet.name} />
                     <div className="my-3 d-flex align-items-center justify-content-center gap-3">

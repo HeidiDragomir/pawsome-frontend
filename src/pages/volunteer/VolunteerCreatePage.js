@@ -12,6 +12,7 @@ const VolunteerCreatePage = () => {
     const [title, setTitle] = useState('')
     const [photo, setPhoto] = useState('')
     const [description, setDescription] = useState('')
+    const [message, setMessage] = useState('')
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -19,19 +20,19 @@ const VolunteerCreatePage = () => {
     const volunteerCreate = useSelector((state) => state.volunteerCreate)
     const { loading, error, success } = volunteerCreate
 
-    // const volunteerInfo = useSelector((state) => state.volunteerInfo)
-    // const { volunteer } = volunteerInfo
-
     useEffect(() => {
         if (success) {
             dispatch({ type: VOLUNTEER_CREATE_RESET })
-            navigate('/profile/volunteers')
         }
     }, [success, navigate, dispatch])
 
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(createVolunteer(title, photo, description))
+        setMessage('Created.')
+        setTimeout(() => {
+            navigate('/profile/volunteers')
+        }, 2000)
     }
 
     return (
@@ -44,6 +45,7 @@ const VolunteerCreatePage = () => {
             </div>
             <div className="volunteer-create-container form-container bg-white rounded-5 border">
                 <h2 className="my-4">Add Volunteer Info</h2>
+                {message && <Message variant="success">{message}</Message>}
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
 

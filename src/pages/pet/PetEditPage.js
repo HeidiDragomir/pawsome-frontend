@@ -18,8 +18,10 @@ const PetEditPage = () => {
     const [about, setAbout] = useState('')
     const [photo, setPhoto] = useState('')
     const [place, setPlace] = useState('')
+    const [message, setMessage] = useState('')
 
     const { id } = useParams()
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -32,7 +34,6 @@ const PetEditPage = () => {
     useEffect(() => {
         if (success) {
             dispatch({ type: PET_UPDATE_RESET })
-            navigate('/profile/pets')
         } else {
             // eslint-disable-next-line no-lonely-if
             if (!pet.name || pet._id !== id) {
@@ -52,7 +53,10 @@ const PetEditPage = () => {
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(updatePet({ _id: id, name, gender, age, size, about, photo, place }))
-        navigate('/profile/pets')
+        setMessage('Pet updated.')
+        setTimeout(() => {
+            navigate('/profile/pets')
+        }, 2000)
     }
 
     return (
@@ -67,7 +71,7 @@ const PetEditPage = () => {
                 <h2 className="my-4">Update Pet Info</h2>
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
-
+                {message && <Message variant="success">{message}</Message>}
                 <form onSubmit={onSubmit}>
                     <div className="form-group">
                         <input

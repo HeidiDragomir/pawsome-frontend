@@ -15,7 +15,9 @@ const AboutMePage = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [details, setDetails] = useState('')
-    const [message, setMessage] = useState(null)
+    const [message, setMessage] = useState('')
+    const [messagePwd, setMessagePwd] = useState('')
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -47,12 +49,17 @@ const AboutMePage = () => {
     const onSubmit = (e) => {
         e.preventDefault()
         if (password !== confirmPassword) {
-            setMessage('Password is not the same. Please try again.')
+            setMessagePwd('Password is not the same. Please try again.')
+            setTimeout(() => {
+                setMessagePwd('')
+            }, 2000)
         } else {
             dispatch(updateUserProfile({ id: user._id, name, email, password, details }))
+            setMessage('Profile updated.')
+            setTimeout(() => {
+                navigate('/profile')
+            }, 2000)
         }
-
-        navigate('/profile')
     }
     return (
         <section className="aboutme-section flex-grow-1 d-flex flex-column justify-content-center align-items-center">
@@ -67,7 +74,8 @@ const AboutMePage = () => {
                     <BsPersonBoundingBox className="icon-form" />
                     My Info
                 </h2>
-                {message && <Message variant="danger">{message}</Message>}
+                {message && <Message variant="success">{message}</Message>}
+                {messagePwd && <Message variant="danger">{messagePwd}</Message>}
                 {error && <Message variant="danger">{error}</Message>}
                 {success && <Message variant="success">Account is updated</Message>}
                 {loading && <Loader />}
@@ -120,19 +128,6 @@ const AboutMePage = () => {
                         Update
                     </button>
                 </form>
-                {/* <form onSubmit={onSubmit}>
-                    <div className="form-group">
-                        <textarea
-                            id="details"
-                            value={details}
-                            onChange={(e) => setDetails(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <button type="submit" className="btn btn-primary">
-                        Add
-                    </button>
-                </form> */}
             </div>
         </section>
     )

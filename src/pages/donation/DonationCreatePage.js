@@ -12,6 +12,7 @@ const DonationCreatePage = () => {
     const [title, setTitle] = useState('')
     const [photo, setPhoto] = useState('')
     const [description, setDescription] = useState('')
+    const [message, setMessage] = useState('')
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -19,19 +20,19 @@ const DonationCreatePage = () => {
     const donationCreate = useSelector((state) => state.donationCreate)
     const { loading, error, success } = donationCreate
 
-    // const donationInfo = useSelector((state) => state.donationInfo)
-    // const { donation } = donationInfo
-
     useEffect(() => {
         if (success) {
             dispatch({ type: DONATION_CREATE_RESET })
-            navigate('/profile/donations')
         }
     }, [success, navigate, dispatch])
 
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(createDonation(title, photo, description))
+        setMessage('Donation created.')
+        setTimeout(() => {
+            navigate('/profile/donations')
+        }, 2000)
     }
 
     return (
@@ -44,6 +45,7 @@ const DonationCreatePage = () => {
             </div>
             <div className="donation-create-container form-container bg-white rounded-5 border">
                 <h2 className="my-4">Add Donation Info</h2>
+                {message && <Message variant="success">{message}</Message>}
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
 

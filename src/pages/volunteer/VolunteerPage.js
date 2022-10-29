@@ -18,7 +18,9 @@ import Message from '../../components/message/Message'
 
 const VolunteerPage = () => {
     const [checked, setChecked] = useState(false)
-    const [message, setMessage] = useState()
+    const [message, setMessage] = useState('')
+    const [messageDel, setMessageDel] = useState('')
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -44,15 +46,16 @@ const VolunteerPage = () => {
 
     const handleDelete = () => {
         dispatch(deleteVolunteer(id))
-
-        navigate('/profile/volunteers')
+        setMessageDel('Deleted.')
+        setTimeout(() => {
+            navigate('/profile/volunteers')
+        }, 2000)
     }
 
     const handleOnClick = () => {
         dispatch(createVolunteerParticipant(id))
         setMessage('Checked :)')
     }
-
     return (
         <section className="volunteer-section flex-grow-1 d-flex flex-column justify-content-center align-items-center">
             <div className="mt-5 ms-5">
@@ -65,6 +68,7 @@ const VolunteerPage = () => {
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
                 {message && <Message variant="success">{message}</Message>}
+                {messageDel && <Message variant="danger">{messageDel}</Message>}
 
                 <div className="volunteer-item-img d-flex flex-column align-items-center justify-content-center bg-white">
                     <img src={volunteer.photo} alt={volunteer.title} />

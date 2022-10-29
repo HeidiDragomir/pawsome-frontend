@@ -10,8 +10,11 @@ import Message from '../../components/message/Message'
 // eslint-disable-next-line react/function-component-definition
 const QuestionCreatePage = () => {
     const [title, setTitle] = useState('')
-    const [photo, setPhoto] = useState('')
+    const [photo, setPhoto] = useState(
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyccpkqVagH-8Pbq0r3-fCJz20h_S92K2rFQ&usqp=CAU'
+    )
     const [description, setDescription] = useState('')
+    const [message, setMessage] = useState('')
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -19,19 +22,19 @@ const QuestionCreatePage = () => {
     const questionCreate = useSelector((state) => state.questionCreate)
     const { loading, error, success } = questionCreate
 
-    // const questionInfo = useSelector((state) => state.questionInfo)
-    // const { question } = questionInfo
-
     useEffect(() => {
         if (success) {
             dispatch({ type: QUESTION_CREATE_RESET })
-            navigate('/profile/questions')
         }
     }, [success, navigate, dispatch])
 
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(createQuestion(title, photo, description))
+        setMessage('Question created.')
+        setTimeout(() => {
+            navigate('/profile/questions')
+        }, 2000)
     }
 
     return (
@@ -44,6 +47,7 @@ const QuestionCreatePage = () => {
             </div>
             <div className="question-create-container form-container bg-white rounded-5 border">
                 <h2 className="my-4">Add Question</h2>
+                {message && <Message variant="success">{message}</Message>}
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
 
@@ -64,8 +68,6 @@ const QuestionCreatePage = () => {
                             type="text"
                             value={photo}
                             onChange={(e) => setPhoto(e.target.value)}
-                            placeholder="Photo"
-                            required
                         />
                         <textarea
                             className="form-control"

@@ -16,7 +16,8 @@ const UserCreatePage = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [isAdmin, setIsAdmin] = useState(false)
-    const [message, setMessage] = useState(null)
+    const [message, setMessage] = useState('')
+    const [messagePwd, setMessagePwd] = useState('')
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -27,16 +28,22 @@ const UserCreatePage = () => {
     useEffect(() => {
         if (success) {
             dispatch({ type: USER_CREATE_RESET })
-            navigate('/admin')
         }
     }, [success, navigate, dispatch])
 
     const onSubmit = (e) => {
         e.preventDefault()
         if (password !== confirmPassword) {
-            setMessage('Password is not the same. Please try again.')
+            setMessagePwd('Password is not the same. Please try again.')
+            setTimeout(() => {
+                setMessagePwd('')
+            }, 2000)
         } else {
             dispatch(createUser(name, email, password, isAdmin))
+            setMessage('User created.')
+            setTimeout(() => {
+                navigate('/admin')
+            }, 2000)
         }
     }
 
@@ -51,7 +58,8 @@ const UserCreatePage = () => {
 
             <div className="user-create-container form-container bg-white rounded-5 border">
                 <h2 className="my-4">Create User</h2>
-                {message && <Message variant="danger">{message}</Message>}
+                {message && <Message variant="success">{message}</Message>}
+                {messagePwd && <Message variant="danger">{messagePwd}</Message>}
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
                 <form onSubmit={onSubmit}>

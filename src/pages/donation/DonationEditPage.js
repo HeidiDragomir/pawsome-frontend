@@ -14,6 +14,7 @@ const DonationEditPage = () => {
     const [title, setTitle] = useState('')
     const [photo, setPhoto] = useState('')
     const [description, setDescription] = useState('')
+    const [message, setMessage] = useState('')
 
     const { id } = useParams()
     const navigate = useNavigate()
@@ -28,7 +29,6 @@ const DonationEditPage = () => {
     useEffect(() => {
         if (success) {
             dispatch({ type: DONATION_UPDATE_RESET })
-            navigate('/profile/donations')
         } else {
             // eslint-disable-next-line no-lonely-if
             if (!donation.title || donation._id !== id) {
@@ -44,7 +44,10 @@ const DonationEditPage = () => {
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(updateDonation({ _id: id, title, photo, description }))
-        navigate('/profile/donations')
+        setMessage('Donation updated.')
+        setTimeout(() => {
+            navigate('/profile/donations')
+        }, 2000)
     }
 
     return (
@@ -59,7 +62,7 @@ const DonationEditPage = () => {
                 <h2>Update Donation Info</h2>
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
-
+                {message && <Message variant="success">{message}</Message>}
                 <form onSubmit={onSubmit}>
                     <div className="form-group">
                         <input
