@@ -57,7 +57,7 @@ const AboutMePage = () => {
             dispatch(updateUserProfile({ id: user._id, name, email, password, details }))
             setMessage('Profile updated.')
             setTimeout(() => {
-                navigate('/profile')
+                navigate('/profile/aboutme')
             }, 2000)
         }
     }
@@ -68,6 +68,10 @@ const AboutMePage = () => {
                     <BsArrowLeft className="icon-back" />
                     Back
                 </Link>
+            </div>
+            <div className="aboutme-container form-container details-item rounded-5 border">
+                <h4 className="fw-bold">Details</h4>
+                <p>{user.details}</p>
             </div>
             <div className="aboutme-container form-container bg-white rounded-5 border">
                 <h2 className="my-4">
@@ -119,7 +123,7 @@ const AboutMePage = () => {
                         <textarea
                             id="details"
                             value={details}
-                            placeholder="Details"
+                            placeholder="Add some details"
                             onChange={(e) => setDetails(e.target.value)}
                             required
                         />
