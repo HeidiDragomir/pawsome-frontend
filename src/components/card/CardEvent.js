@@ -12,10 +12,11 @@ const CardEvent = ({ event }) => {
             </div>
 
             <p className="card-title fs-5 fw-bold">{event.title}</p>
-            <p className="card-description fs-6">{event.description}</p>
-            <p className="card-description fs-6 border-bottom pb-4">
+            <p className="card-description-createdBy">
                 created by <span className="fst-italic">{event.name}</span>
             </p>
+            <p className="card-description fs-6 border-bottom pb-4">{event.description}</p>
+
             {event.participants.length > 0 && (
                 <div className="mx-3">
                     {event.participants.map((participant) => (

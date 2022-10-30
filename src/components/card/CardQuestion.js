@@ -11,6 +11,9 @@ const CardQuestion = ({ question }) => {
                 <img src={question.photo} alt="question" />
             </div>
             <p className="card-title fs-5 fw-bold">{question.title}</p>
+            <p className="card-description-createdBy">
+                created by <span className="fst-italic">{question.name}</span>
+            </p>
             <p className="card-description fs-6">{question.description}</p>
         </Link>
     )

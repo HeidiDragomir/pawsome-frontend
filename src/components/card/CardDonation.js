@@ -11,10 +11,10 @@ const CardDonation = ({ donation }) => {
                 <img src={donation.photo} alt="donation" />
             </div>
             <p className="card-title fs-5 fw-bold">{donation.title}</p>
-            <p className="card-description fs-6">{donation.description}</p>
-            <p className="card-description fs-6 border-bottom pb-4">
+            <p className="card-description-createdBy">
                 created by <span className="fst-italic">{donation.name}</span>
             </p>
+            <p className="card-description fs-6 border-bottom pb-4">{donation.description}</p>
             {donation.participants.length > 0 && (
                 <div className="mx-3">
                     {donation.participants.map((participant) => (
