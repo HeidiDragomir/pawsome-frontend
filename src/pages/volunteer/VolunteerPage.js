@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap'
 import { BsArrowLeft } from 'react-icons/bs'
 import { GiCheckMark } from 'react-icons/gi'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 
 import {
     volunteerDetails,
@@ -55,6 +55,9 @@ const VolunteerPage = () => {
     const handleOnClick = () => {
         dispatch(createVolunteerParticipant(id))
         setMessage('Checked :)')
+        setTimeout(() => {
+            navigate('/volunteers')
+        }, 1500)
     }
     return (
         <section className="volunteer-section flex-grow-1 d-flex flex-column justify-content-center align-items-center">
@@ -64,48 +67,52 @@ const VolunteerPage = () => {
                     Back
                 </Link>
             </div>
-            <div className="volunteer-item form-container bg-white rounded-5 border">
-                {loading && <Loader />}
-                {error && <Message variant="danger">{error}</Message>}
-                {message && <Message variant="success">{message}</Message>}
-                {messageDel && <Message variant="danger">{messageDel}</Message>}
+            {userInfo ? (
+                <div className="volunteer-item form-container bg-white rounded-5 border">
+                    {loading && <Loader />}
+                    {error && <Message variant="danger">{error}</Message>}
+                    {message && <Message variant="success">{message}</Message>}
+                    {messageDel && <Message variant="danger">{messageDel}</Message>}
 
-                <div className="volunteer-item-img d-flex flex-column align-items-center justify-content-center bg-white">
-                    <img src={volunteer.photo} alt={volunteer.title} />
-                    <div className="my-3 d-flex align-items-center justify-content-center gap-3">
-                        {checked && userInfo._id !== volunteer.user && (
-                            <Button onClick={handleOnClick} className="btn-adopt">
-                                <GiCheckMark className="fs-4" />
+                    <div className="volunteer-item-img d-flex flex-column align-items-center justify-content-center bg-white">
+                        <img src={volunteer.photo} alt={volunteer.title} />
+                        <div className="my-3 d-flex align-items-center justify-content-center gap-3">
+                            {userInfo._id !== volunteer.user && (
+                                <Button onClick={handleOnClick} className="btn-adopt">
+                                    <GiCheckMark className="fs-4" />
+                                </Button>
+                            )}
+                        </div>
+                    </div>
+                    <div className="volunteer-item-info">
+                        <p className="volunteer-info mt-5 mb-3 fw-bold">{volunteer.title}</p>
+                        <p className="volunteer-about">{volunteer.description}</p>
+                    </div>
+
+                    {userInfo._id === volunteer.user ? (
+                        <div className="volunteer-buttons-container">
+                            <Button
+                                className="fw-bold"
+                                variant="success"
+                                type="button"
+                                href={`/volunteer/${volunteer._id}/edit`}
+                            >
+                                Edit
                             </Button>
-                        )}
-                    </div>
+                            <Button
+                                className="mx-3 fw-bold"
+                                variant="danger"
+                                type="button"
+                                onClick={() => handleDelete(volunteer._id)}
+                            >
+                                Delete
+                            </Button>
+                        </div>
+                    ) : null}
                 </div>
-                <div className="volunteer-item-info">
-                    <p className="volunteer-info mt-5 mb-3 fw-bold">{volunteer.title}</p>
-                    <p className="volunteer-about">{volunteer.description}</p>
-                </div>
-
-                {userInfo._id === volunteer.user ? (
-                    <div className="volunteer-buttons-container">
-                        <Button
-                            className="fw-bold"
-                            variant="success"
-                            type="button"
-                            href={`/volunteer/${volunteer._id}/edit`}
-                        >
-                            Edit
-                        </Button>
-                        <Button
-                            className="mx-3 fw-bold"
-                            variant="danger"
-                            type="button"
-                            onClick={() => handleDelete(volunteer._id)}
-                        >
-                            Delete
-                        </Button>
-                    </div>
-                ) : null}
-            </div>
+            ) : (
+                <Navigate to="/login" />
+            )}
         </section>
     )
 }

@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap'
 import { BsArrowLeft } from 'react-icons/bs'
 import { BiDonateHeart } from 'react-icons/bi'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
 
 import {
     donationDetails,
@@ -33,9 +33,6 @@ const DonationPage = () => {
     const { userInfo } = userLogin
 
     useEffect(() => {
-        if (!userInfo) {
-            navigate('/login')
-        }
         if (!donation || donation._id !== id) {
             dispatch(donationDetails(id))
         } else {
@@ -53,7 +50,11 @@ const DonationPage = () => {
 
     const handleOnClick = () => {
         dispatch(createDonationParticipant(id))
-        setMessage('Please contact me for more info!')
+        setMessage('Please contact us for more info!')
+        // setTimeout(() => {
+        //     // eslint-disable-next-line no-undef
+        //     window.location.reload()
+        // }, 1500)
     }
 
     return (
@@ -64,47 +65,53 @@ const DonationPage = () => {
                     Back
                 </Link>
             </div>
-            <div className="donation-item form-container bg-white rounded-5 border">
-                {loading && <Loader />}
-                {error && <Message variant="danger">{error}</Message>}
-                {message && <Message variant="success">{message}</Message>}
-                {messageDel && <Message variant="danger">{messageDel}</Message>}
-                <div className="donation-item-img d-flex flex-column align-items-center justify-content-center bg-white">
-                    <img src={donation.photo} alt={donation.title} />
-                    <div className="my-3 d-flex align-items-center justify-content-center gap-3">
-                        {wanted && userInfo._id !== donation.user && (
-                            <Button onClick={handleOnClick} className="btn-adopt">
-                                <BiDonateHeart className="fs-4" />
-                            </Button>
-                        )}
+            {userInfo ? (
+                <div className="donation-item form-container bg-white rounded-5 border">
+                    {loading && <Loader />}
+                    {error && <Message variant="danger">{error}</Message>}
+                    {message && <Message variant="success">{message}</Message>}
+                    {messageDel && <Message variant="danger">{messageDel}</Message>}
+                    <div className="donation-item-img d-flex flex-column align-items-center justify-content-center bg-white">
+                        <img src={donation.photo} alt={donation.title} />
+                        <div className="my-3 d-flex align-items-center justify-content-center gap-3">
+                            {console.log(wanted)}
+                            {wanted && userInfo._id !== donation.user && (
+                                <Button onClick={handleOnClick} className="btn-adopt">
+                                    <BiDonateHeart className="fs-4" />
+                                </Button>
+                            )}
+                            {console.log(wanted)}
+                        </div>
                     </div>
-                </div>
-                <div className="donation-item-info">
-                    <h2 className="event-info mt-5 mb-3 fw-bold">{donation.title}</h2>
-                    <p className="donation-about">{donation.description}</p>
-                </div>
+                    <div className="donation-item-info">
+                        <h2 className="event-info mt-5 mb-3 fw-bold">{donation.title}</h2>
+                        <p className="donation-about">{donation.description}</p>
+                    </div>
 
-                {userInfo._id === donation.user ? (
-                    <div className="donation-buttons-container">
-                        <Button
-                            className="fw-bold"
-                            variant="success"
-                            type="button"
-                            href={`/donation/${donation._id}/edit`}
-                        >
-                            Edit
-                        </Button>
-                        <Button
-                            className="mx-3 fw-bold"
-                            variant="danger"
-                            type="button"
-                            onClick={() => handleDelete(donation._id)}
-                        >
-                            Delete
-                        </Button>
-                    </div>
-                ) : null}
-            </div>
+                    {userInfo._id === donation.user ? (
+                        <div className="donation-buttons-container">
+                            <Button
+                                className="fw-bold"
+                                variant="success"
+                                type="button"
+                                href={`/donation/${donation._id}/edit`}
+                            >
+                                Edit
+                            </Button>
+                            <Button
+                                className="mx-3 fw-bold"
+                                variant="danger"
+                                type="button"
+                                onClick={() => handleDelete(donation._id)}
+                            >
+                                Delete
+                            </Button>
+                        </div>
+                    ) : null}
+                </div>
+            ) : (
+                <Navigate to="/login" />
+            )}
         </section>
     )
 }
