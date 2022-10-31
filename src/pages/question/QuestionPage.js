@@ -120,7 +120,7 @@ const QuestionPage = () => {
                                             className="mb-5 mb-md-3 bg-light p-3 shadow-sm rounded"
                                         >
                                             <strong>{answer.name}</strong>
-                                            <p>{moment(question.createdAt).calendar()}</p>
+                                            <p>{moment(answer.updatedAt).fromNow()}</p>
                                             <div className="alert alert-info mt-3">
                                                 {answer.text}
                                             </div>
