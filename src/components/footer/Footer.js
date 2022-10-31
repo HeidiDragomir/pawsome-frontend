@@ -26,12 +26,12 @@ const Footer = () => {
                         <ul className="p-0">
                             <li>
                                 <Link to="/" className="footer-link">
-                                    Adoption process
+                                    Adoption/foster process
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/" className="footer-link">
-                                    Foster process
+                                    Volunteering
                                 </Link>
                             </li>
                             <li>
