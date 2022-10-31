@@ -58,7 +58,7 @@ export const donationMyListReducer = (state = { donations: [] }, action) => {
     }
 }
 
-export const donationDetailsReducer = (state = { donation: {} }, action) => {
+export const donationDetailsReducer = (state = { donation: { participants: [] } }, action) => {
     switch (action.type) {
         case DONATION_DETAILS_REQUEST:
             return {
