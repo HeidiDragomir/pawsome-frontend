@@ -30,9 +30,6 @@ const EventPage = () => {
     const { userInfo } = userLogin
 
     useEffect(() => {
-        if (!userInfo) {
-            navigate('/login')
-        }
         if (!event || event._id !== id) {
             dispatch(eventDetails(id))
         } else {
