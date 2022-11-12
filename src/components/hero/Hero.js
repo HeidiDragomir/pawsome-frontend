@@ -9,11 +9,11 @@ const Hero = () => {
             <div className="hero-section-container">
                 <div className="hero-section-item">
                     <div className="hero-section-text">
-                        <h2 className="fw-bold">Find</h2>
-                        <h3 className="fw-bolder">
+                        <h1 className="fw-bold">Find</h1>
+                        <h2 className="fw-bolder">
                             your new
                             <span> best friend</span>!
-                        </h3>
+                        </h2>
                         <p>Meet our dogs and cats that are looking for a home.</p>
                         <Button
                             type="button"
@@ -29,7 +29,7 @@ const Hero = () => {
                         src={HERO}
                         width="20em"
                         height="auto"
-                        alt="cute pets"
+                        alt="cute cats and dogs"
                     />
                 </div>
             </div>

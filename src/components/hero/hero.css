@@ -11,10 +11,12 @@
 }
 
 .hero-section-text h2 {
-    font-size: 2.5em;
+    font-size: 1.3em;
 }
-.hero-section-text h3 span {
-    color: var(--main-color-alt)
+
+.hero-section-text h2 span {
+    color: var(--main-color-alt);
+    font-size: 1.8em;
 }
 .hero-img {
     width: 20em;
