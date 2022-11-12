@@ -1,6 +1,5 @@
 /* eslint-disable react/function-component-definition */
 import { Button } from 'react-bootstrap'
-// import { FaPaw } from 'react-icons/fa'
 import './hero.css'
 import HERO from '../../assets/hero.png'
 

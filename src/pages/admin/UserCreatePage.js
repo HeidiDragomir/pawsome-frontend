@@ -38,6 +38,11 @@ const UserCreatePage = () => {
             setTimeout(() => {
                 setMessagePwd('')
             }, 2000)
+        } else if (password.length < 6) {
+            setMessagePwd('Too short. It must have min 6 characters.')
+            setTimeout(() => {
+                setMessagePwd('')
+            }, 2000)
         } else {
             dispatch(createUser(name, email, password, isAdmin))
             setMessage('User created.')

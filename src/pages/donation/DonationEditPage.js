@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams, useNavigate } from 'react-router-dom'
-// import { Button } from 'react-bootstrap'
 import { BsArrowLeft } from 'react-icons/bs'
 import Message from '../../components/message/Message'
 import Loader from '../../components/loader/Loader'

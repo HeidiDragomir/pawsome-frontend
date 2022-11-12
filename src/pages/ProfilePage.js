@@ -3,14 +3,10 @@ import { BiDonateHeart, BiHomeHeart } from 'react-icons/bi'
 import { MdOutlineEventAvailable, MdOutlineLiveHelp } from 'react-icons/md'
 import { BsPersonBoundingBox } from 'react-icons/bs'
 import { FaPaw } from 'react-icons/fa'
-// import { useSelector } from 'react-redux'
 import './profilePage.css'
 
 // eslint-disable-next-line react/function-component-definition
 const ProfilePage = () => {
-    // const userDetails = useSelector((state) => state.userDetails)
-    // const { user } = userDetails
-
     return (
         <div className="profile-section">
             <div className="btn-group">

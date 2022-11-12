@@ -32,7 +32,7 @@ const MyQuestionsPage = () => {
     return (
         <section className="cards-section">
             <div className="mb-5 ms-5">
-                <Link to="/profile/questions" className="link-black">
+                <Link to="/profile" className="link-black">
                     <BsArrowLeft className="icon-back" />
                     Back
                 </Link>
@@ -43,9 +43,10 @@ const MyQuestionsPage = () => {
                 </Button>
             </div>
             <div className="cards-container">
+                {!loading && questions.length === 0 && <h2>Nothing found.</h2>}
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
-                {!loading && questions.length === 0 && <h2>Nothing found.</h2>}
+
                 {questions.map((question) => (
                     <CardQuestion key={question._id} question={question} />
                 ))}

@@ -53,7 +53,7 @@ const PetPage = () => {
 
     const handleIsAdopted = () => {
         dispatch(updatePetToAdopted({ _id: id, isAdopted: adopted }))
-        setMessageAdopt('Yeyyy, I have a home and a family!')
+        setMessageAdopt('Yeyy, I have a home and a family!')
         setTimeout(() => {
             // eslint-disable-next-line no-undef
             window.location.reload()
@@ -62,7 +62,7 @@ const PetPage = () => {
 
     const handleIsFostered = () => {
         dispatch(updatePetToAdopted({ _id: id, isFostered: fostered }))
-        setMessageAdopt('Yeyyy, I have a home and a family!')
+        setMessageAdopt('Yeyy, I have a home and a family!')
         setTimeout(() => {
             // eslint-disable-next-line no-undef
             window.location.reload()
@@ -71,7 +71,7 @@ const PetPage = () => {
 
     const handleIsVirtual = () => {
         dispatch(updatePetToAdopted({ _id: id, isVirtualAdopted: virtual }))
-        setMessageVirtual('Yeyyy, thank you!')
+        setMessageVirtual('Yeyy, thank you!')
         setTimeout(() => {
             // eslint-disable-next-line no-undef
             window.location.reload()
@@ -135,7 +135,7 @@ const PetPage = () => {
                         <p className="pet-info fw-light">{`${pet.age} years - ${pet.gender}`}</p>
                         <p className="pet-info2 border-bottom pb-3">{`${pet.name} is waiting to meet you in ${pet.place}.`}</p>
                         <div className="p-4 border-bottom">
-                            <h5 className="fw-bold">More info:</h5>
+                            <h5 className="fw-bold">More info about {pet.name}:</h5>
                             <p className="pet-about">{pet.about}</p>
                         </div>
 

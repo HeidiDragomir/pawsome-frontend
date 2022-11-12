@@ -2,7 +2,7 @@
 
 <img src="https://raw.githubusercontent.com/HeidiDragomir/pawsome-frontend/main/src/assets/icon.PNG" style="width: auto; height: auto; border-radius: 10px">
 
-Pawsome is the perfect place where you can find a paw friend, do some volunteering, create pet events or donate anything. Moreover you can ask anything if you have a problem or only need to know something related to your pet. Pawsome is like a pet friendly community where you can find help or just look to all adorable cats and dogs who would love to join your family.
+Pawsome is the perfect place where you can find a paw friend, do some volunteering, create pet events or donate anything. Moreover you can ask anything if you have a problem or only need to know something related to your pet. Pawsome is like a pet friendly community where you can find help or just look to all adorable cats and dogs who would love to join to your family.
 
 ## Table of Contents
 
@@ -13,13 +13,15 @@ Pawsome is the perfect place where you can find a paw friend, do some volunteeri
 -   [Code formatting & Naming conventions](#code-formatting-&-Naming-conventions)
 -   [Sitemap, Design & User Stories](#sitemap,-design-&-user-stories)
 -   [Getting Started](#getting-started)
--   [Future Extra Challanges:](#future-extra-challanges)
+-   [Future Extra Challanges](#future-extra-challanges)
 -   [Contact](#contact)
 -   [License](#license)
 
 ## General Information
 
-You can find live version here: [Pawsome](https://pawsome-fe.netlify.app/)
+- You can find live version here: [Pawsome](https://pawsome-fe.netlify.app/)
+- and Backend Github Repository here: [Backend Github Repository](https://github.com/HeidiDragomir/pawsome-backend)
+
 
 ## Goals
 
@@ -77,6 +79,15 @@ REACT_APP_API_URL = http://localhost:5000
 ```
 npm start
 ```
+
+
+## Future Extra Challanges
+
+- Add a payment method in order to donate money
+- When adopt or foster --> connect automatically with the owner (email, message, chat)
+- Happy story Section
+- Last added Section
+- A map with the location of the pet's owner
 
 ## Contact
 
