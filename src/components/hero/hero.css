@@ -34,8 +34,8 @@
         flex-direction: row;
     }
 
-    
     .hero-img {
+        width: 20em;
         height: auto;
     }
     
