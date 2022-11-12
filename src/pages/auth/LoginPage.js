@@ -71,7 +71,7 @@ const LoginPage = () => {
                     </button>
                 </form>
                 <div className="border-form w-100 mt-4">
-                    <div className="d-flex justify-content-center mt-3">
+                    <div className="d-flex justify-content-center mt-3 gap-2">
                         <h2 className="text-form">{`Don't have an account?`} </h2>
                         <h2 className="text-form">
                             <Link

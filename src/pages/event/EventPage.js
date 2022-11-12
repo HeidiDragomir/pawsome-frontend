@@ -7,11 +7,9 @@ import { BsArrowLeft } from 'react-icons/bs'
 import { MdOutlineEventNote } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom'
-// import Confetti from 'react-confetti'
 import { eventDetails, deleteEvent, createEventParticipant } from '../../actions/eventActions'
 import Loader from '../../components/loader/Loader'
 import Message from '../../components/message/Message'
-// import { EVENT_CREATE_PARTICIPANT_RESET } from '../../actions/types'
 
 const EventPage = () => {
     const [attended, setAttended] = useState(false)

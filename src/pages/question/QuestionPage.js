@@ -34,8 +34,6 @@ const QuestionPage = () => {
 
     useEffect(() => {
         if (successQuestionAnswer) {
-            // eslint-disable-next-line no-alert, no-undef
-            // alert('Your Answer is posted.')
             setText('')
             dispatch({ type: QUESTION_CREATE_ANSWER_RESET })
         }
@@ -120,7 +118,7 @@ const QuestionPage = () => {
                                             className="mb-5 mb-md-3 bg-light p-3 shadow-sm rounded"
                                         >
                                             <strong>{answer.name}</strong>
-                                            <p>{moment(answer.updatedAt).fromNow()}</p>
+                                            <p>{moment(answer.createdAt).fromNow()}</p>
                                             <div className="alert alert-info mt-3">
                                                 {answer.text}
                                             </div>

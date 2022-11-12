@@ -1,6 +1,4 @@
 .header {
-    /* width: 100%; */
-    /* position: fixed; */
     z-index: 999;
     background: white;
     box-shadow: 0 0 10px #cfcfcf;
@@ -71,7 +69,10 @@
 
 /* Media Queries */
 
-@media screen and (min-width: 500px) {
+@media (min-width: 1200px) {
+    .icon-text {
+        margin: 0 5px;
+    }
 
     .stroke .nav-link:after {
         margin: auto;
@@ -79,12 +80,6 @@
     
     .stroke .nav-link:hover:after {
         width: 100%;
-    }
-}
-
-@media (min-width: 992px) {
-    .icon-text {
-        margin: 0 5px;
     }
 }
 

@@ -20,9 +20,6 @@ const EventCreatePage = () => {
     const eventCreate = useSelector((state) => state.eventCreate)
     const { loading, error, success } = eventCreate
 
-    // const eventInfo = useSelector((state) => state.eventInfo)
-    // const { event } = eventInfo
-
     useEffect(() => {
         if (success) {
             dispatch({ type: EVENT_CREATE_RESET })

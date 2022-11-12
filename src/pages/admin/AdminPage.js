@@ -1,12 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from 'react'
-// import { LinkContainer } from 'react-router-bootstrap'
 import { Button, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { IconContext } from 'react-icons'
 import { BsXLg } from 'react-icons/bs'
-import { FaEdit, FaTrash } from 'react-icons/fa'
+import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai'
 import { FcCheckmark } from 'react-icons/fc'
 import Message from '../../components/message/Message'
 import Loader from '../../components/loader/Loader'
@@ -46,10 +45,10 @@ const AdminPage = () => {
     }
 
     return (
-        <section className="users-section">
-            <div className="users-container">
+        <section className="admin-section">
+            <div className="admin-container">
                 <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap">
-                    <h2 className="fw-bold fs-1">Users</h2>
+                    <h2 className="fw-bold fs-1">Users Info</h2>
                     <Button
                         className="btn-main-color my-3 text-decoration-none"
                         type="button"
@@ -61,7 +60,7 @@ const AdminPage = () => {
                 {loading && <Loader />}
                 {error && <Message variant="danger">{error}</Message>}
                 {message && <Message variant="danger">{message}</Message>}
-                <Table responsive="sm" hover>
+                <Table responsive="lg" hover>
                     <thead>
                         <tr className="tbl-row-align">
                             <th>ID</th>
@@ -99,10 +98,10 @@ const AdminPage = () => {
                                     <Button
                                         href={`/admin/user/${user._id}/edit`}
                                         type="button"
-                                        variant="info"
+                                        variant="secondary"
                                         className="mx-1"
                                     >
-                                        <FaEdit className="fs-4" />
+                                        <AiOutlineEdit className="fs-4" />
                                     </Button>
 
                                     <Button
@@ -113,7 +112,7 @@ const AdminPage = () => {
                                             deleteHandler(user._id)
                                         }}
                                     >
-                                        <FaTrash className="fs-4" />
+                                        <AiOutlineDelete className="fs-4" />
                                     </Button>
                                 </td>
                             </tr>

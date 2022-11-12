@@ -24,7 +24,7 @@ const Header = () => {
         dispatch(logout())
         navigate('/')
         // eslint-disable-next-line no-undef
-        window.location.reload(true)
+        window.location.reload()
     }
     return (
         <header className="header">

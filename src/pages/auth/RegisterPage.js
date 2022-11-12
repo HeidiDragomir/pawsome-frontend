@@ -29,6 +29,9 @@ const RegisterPage = () => {
             setMessage('Account created.')
             setTimeout(() => {
                 navigate(redirect)
+
+                // eslint-disable-next-line no-undef
+                window.location.reload()
             }, 2000)
         }
     }, [navigate, userInfo, redirect])
@@ -37,6 +40,11 @@ const RegisterPage = () => {
         e.preventDefault()
         if (password !== confirmPassword) {
             setMessagePwd(`It's not the same password. Please try again!`)
+            setTimeout(() => {
+                setMessagePwd('')
+            }, 2000)
+        } else if (password.length < 6) {
+            setMessagePwd('Too short. It must have min 6 characters.')
             setTimeout(() => {
                 setMessagePwd('')
             }, 2000)
@@ -52,7 +60,7 @@ const RegisterPage = () => {
                     <FaUser className="icon-form" />
                     Sign up
                 </h2>
-                {message && <Message variant="danger">{message}</Message>}
+                {message && <Message variant="success">{message}</Message>}
                 {messagePwd && <Message variant="danger">{messagePwd}</Message>}
                 {error && <Message variant="danger">{error}</Message>}
                 {loading && <Loader />}
@@ -100,13 +108,14 @@ const RegisterPage = () => {
                     </button>
                 </form>
                 <div className="border-form w-100 mt-4">
-                    <div className="d-flex justify-content-center mt-3">
+                    <div className="d-flex justify-content-center mt-3 gap-2">
                         <h2 className="text-form">Already have an account?</h2>
                         <h2 className="text-form">
                             <Link
                                 className="link-black fw-bold"
                                 to={redirect ? `/login?redirect=${redirect}` : '/login'}
                             >
+                                {' '}
                                 Login!
                             </Link>
                         </h2>
