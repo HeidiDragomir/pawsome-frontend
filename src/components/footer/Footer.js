@@ -85,16 +85,32 @@ const Footer = () => {
             </div>
             <div className="footer-bottom-container">
                 <div className="footer-socials p-3">
-                    <Link to="/" className="footer-socials-icons">
+                    <Link
+                        to="/"
+                        className="footer-socials-icons"
+                        aria-label="See more about us on Youtube"
+                    >
                         <SiYoutubemusic className="icon-footer-social" />
                     </Link>
-                    <Link to="/" className="footer-socials-icons">
+                    <Link
+                        to="/"
+                        className="footer-socials-icons"
+                        aria-label="See more about us on Instagram"
+                    >
                         <FaInstagramSquare className="icon-footer-social" />
                     </Link>
-                    <Link to="/" className="footer-socials-icons">
+                    <Link
+                        to="/"
+                        className="footer-socials-icons"
+                        aria-label="See more about us on Facebook"
+                    >
                         <BsFacebook className="icon-footer-social" />
                     </Link>
-                    <Link to="/" className="footer-socials-icons">
+                    <Link
+                        to="/"
+                        className="footer-socials-icons"
+                        aria-label="See more about us on Twitter"
+                    >
                         <AiFillTwitterCircle className="icon-footer-social-twitter" />
                     </Link>
                 </div>

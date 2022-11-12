@@ -26,6 +26,7 @@ const Search = () => {
                     className="navbar-search"
                     type="text"
                     name="q"
+                    aria-label="Search"
                     onChange={(e) => setKeyword(e.target.value)}
                     // eslint-disable-next-line no-return-assign
                     onBlur={(e) => (e.target.value = '')}
