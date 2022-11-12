@@ -7,7 +7,7 @@ const CardPet = ({ pet }) => {
     return (
         <Link className="card h-100 text-decoration-none" to={`/pet/${pet._id}`}>
             <div className="card-img">
-                <img src={pet.photo} alt="cute pet" />
+                <img src={pet.photo} alt="cute pet" width="25vh" height="20vh" />
             </div>
             {pet.isAdopted && (
                 <p className="badge rounded-pill mx-3" style={{ background: '#fc8800' }}>

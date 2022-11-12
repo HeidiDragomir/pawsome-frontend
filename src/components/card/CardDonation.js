@@ -8,7 +8,7 @@ const CardDonation = ({ donation }) => {
         // eslint-disable-next-line no-underscore-dangle
         <Link className="card h-100 text-decoration-none" to={`/donation/${donation._id}`}>
             <div className="card-img">
-                <img src={donation.photo} alt="donation" />
+                <img src={donation.photo} alt="donation" width="25vh" height="20vh" />
             </div>
             <p className="card-title fs-5 fw-bold">{donation.title}</p>
             <p className="card-description-createdBy">

@@ -8,7 +8,7 @@ const CardQuestion = ({ question }) => {
         // eslint-disable-next-line no-underscore-dangle
         <Link className="card h-100 text-decoration-none" to={`/question/${question._id}`}>
             <div className="card-img">
-                <img src={question.photo} alt="question" />
+                <img src={question.photo} width="25vh" height="20vh" alt="question" />
             </div>
             <p className="card-title fs-5 fw-bold">{question.title}</p>
             <p className="card-description-createdBy">

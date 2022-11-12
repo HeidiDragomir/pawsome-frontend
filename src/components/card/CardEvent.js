@@ -8,7 +8,7 @@ const CardEvent = ({ event }) => {
         // eslint-disable-next-line no-underscore-dangle
         <Link className="card h-100 text-decoration-none" to={`/event/${event._id}`}>
             <div className="card-img">
-                <img src={event.photo} alt="event" />
+                <img src={event.photo} alt="event" width="25vh" height="20vh" />
             </div>
 
             <p className="card-title fs-5 fw-bold">{event.title}</p>
